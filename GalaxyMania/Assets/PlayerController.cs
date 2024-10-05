@@ -65,6 +65,12 @@ public class PlayerController : MonoBehaviour
         // If the player falls below a certain Y position, trigger game over
         if (transform.position.y < fallThresholdY)  // Adjust this value depending on your level's height
         {
+            if (levelParent.name == "Level 2"&& PlayerTriangleCollision.collectTriangle)
+            {
+                Time.timeScale = 1f;  // Unfreeze the game
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
+                return;
+            }
             GameOver();
         }
     }
