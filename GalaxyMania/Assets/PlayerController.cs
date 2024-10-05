@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float jump = 20f;
     public Transform levelParent;
     private bool isGameOver = false; // Track if the game is over
+    public float fallThresholdY = -30f;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
     void CheckIfPlayerFell()
     {
         // If the player falls below a certain Y position, trigger game over
-        if (transform.position.y < -30f)  // Adjust this value depending on your level's height
+        if (transform.position.y < fallThresholdY)  // Adjust this value depending on your level's height
         {
             GameOver();
         }
