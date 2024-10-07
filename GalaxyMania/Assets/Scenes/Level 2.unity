@@ -5702,8 +5702,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  player: {fileID: 1998799962}
-  jump: 15
+  player: {fileID: 0}
+  jump: 10
   levelParent: {fileID: 936565159}
   fallThresholdY: -50
 --- !u!114 &1998799967
