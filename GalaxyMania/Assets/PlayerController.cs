@@ -44,10 +44,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     void Move()
     {
-        moveInput = Input.GetAxis("Horizontal"); 
+        moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
     }
 
@@ -65,7 +64,7 @@ public class PlayerController : MonoBehaviour
         // If the player falls below a certain Y position, trigger game over
         if (transform.position.y < fallThresholdY)  // Adjust this value depending on your level's height
         {
-            if (levelParent.name == "Level 2"&& PlayerTriangleCollision.collectTriangle)
+            if (levelParent.name == "Level 2" && PlayerTriangleCollision.collectTriangle)
             {
                 Time.timeScale = 1f;  // Unfreeze the game
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
@@ -90,21 +89,10 @@ public class PlayerController : MonoBehaviour
 
     void ApplyCustomGravity()
     {
-        // Get the current rotation angle of the level
-        float angle = levelParent.rotation.eulerAngles.z;
-        Vector2 gravityDirection;
+        // Calculate the direction from the player downwards in world space
+        Vector2 gravityDirection = (player.position - levelParent.position).normalized;
 
-        // Calculate gravity direction based on the rotation of the level
-        if (angle >= 0 && angle <= 90)
-        {
-            gravityDirection = new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), -Mathf.Cos(angle * Mathf.Deg2Rad));
-        }
-        else
-        {
-            gravityDirection = new Vector2(-Mathf.Sin(angle * Mathf.Deg2Rad), -Mathf.Cos(angle * Mathf.Deg2Rad));
-        }
-
-        // Apply custom gravity force to accelerate the fall as the level rotates
+        // Apply gravity towards the player's local down direction
         rb.AddForce(gravityDirection * Physics2D.gravity.magnitude, ForceMode2D.Force);
     }
 
@@ -117,5 +105,4 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
         }
     }
-
 }
