@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jump);
@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
     void CheckIfPlayerFell()
     {
+        //Debug.Log($"Player Position: {transform.position}");
         // If the player falls below a certain Y position, trigger game over
         if (transform.position.y < fallThresholdY)  // Adjust this value depending on your level's height
         {

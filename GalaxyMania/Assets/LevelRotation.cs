@@ -8,6 +8,7 @@ public class LevelRotation : MonoBehaviour
     public Transform antiRotatPlatforms;
     public Camera mainCamera;
     public float zoomDuration = 3f; // Time it takes to zoom in to the player
+    public static bool rotationPaused = false;
 
     private float currentRotation = 0f;
     private Vector2 lastPlayerPosition;
@@ -34,24 +35,26 @@ public class LevelRotation : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        targetRotation += -horizontalInput * rotationSpeed * Time.deltaTime;
-        currentRotation = Mathf.Lerp(currentRotation, targetRotation, Time.deltaTime * 5f);
-
-        // Apply rotation to the level parent
-        levelParent.rotation = Quaternion.Euler(0f, 0f, currentRotation);
-
-        // Apply the opposite rotation to the AntiRotatPlatforms
-        foreach (Transform platform in antiRotatPlatforms)
+        if (!rotationPaused) // Check if rotation is paused
         {
-            // Rotate each platform around its own origin in the opposite direction
-            platform.Rotate(Vector3.forward * rotationSpeed * horizontalInput * Time.deltaTime);
+            float horizontalInput = Input.GetAxis("Horizontal");
+            targetRotation += -horizontalInput * rotationSpeed * Time.deltaTime;
+            currentRotation = Mathf.Lerp(currentRotation, targetRotation, Time.deltaTime * 5f);
+
+            // Apply rotation to the level parent
+            levelParent.rotation = Quaternion.Euler(0f, 0f, currentRotation);
+
+            // Apply the opposite rotation to the AntiRotatPlatforms
+            foreach (Transform platform in antiRotatPlatforms)
+            {
+                platform.Rotate(Vector3.forward * rotationSpeed * horizontalInput * Time.deltaTime);
+            }
         }
     }
 
     void Update()
     {
-        if (!isZooming)
+        if (!isZooming && !rotationPaused)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             targetRotation += -horizontalInput * rotationSpeed * Time.deltaTime;
@@ -70,8 +73,9 @@ public class LevelRotation : MonoBehaviour
             lastPlayerPosition = transform.position;
 
             // Adjust camera to keep focus on the player
-            AdjustCamera();
+            
         }
+        AdjustCamera();
     }
 
     void AdjustCamera()
@@ -104,6 +108,13 @@ public class LevelRotation : MonoBehaviour
         // Set the final orthographic size to the target value
         mainCamera.orthographicSize = targetZoom;
         isZooming = false; // End the zooming process
+    }
+
+    public IEnumerator PauseRotationForSeconds(float duration)
+    {
+        rotationPaused = true;
+        yield return new WaitForSeconds(duration);
+        rotationPaused = false;
     }
 
     Bounds CalculateLevelBounds()
