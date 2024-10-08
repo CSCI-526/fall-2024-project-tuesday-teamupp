@@ -14,16 +14,47 @@ public class LevelRotation : MonoBehaviour
     private Vector2 lastPlayerPosition;
     private float targetRotation = 0f;
     private bool isZooming = true;
+    private float fullLevelHeight;
+
+
+    // For Hmove and Vmove platforms
+    public Transform hMovingPlatforms;  // Reference to horizontal moving platforms
+    public Transform vMovingPlatforms;  // Reference to vertical moving platforms
+    // Public variables for HMove
+    public float hMoveDistance = 3f;  // HMove distance
+    public float hMoveSpeed = 1f;     // HMove speed
+    // Public variables for VMove
+    public float vMoveDistance = 3f;  // VMove distance
+    public float vMoveSpeed = 1f;     // VMove speed
+    private Vector3 hStartPosition;  // Start position of horizontal platforms
+    private Vector3 vStartPosition;  // Start position of vertical platforms
 
     void Start()
     {
         lastPlayerPosition = transform.position;
 
-        // Ensure the camera size is always 15 for consistent behavior across levels
-        mainCamera.orthographicSize = 15f;
+        // Calculate full level height and start the camera zoomed out to show the entire level
+        fullLevelHeight = CalculateLevelBounds().size.y;
+        mainCamera.orthographicSize = fullLevelHeight * 0.6f; // Start zoomed out (adjusted multiplier)
 
-        // Start the coroutine to smoothly zoom in on the player (if you want to keep smooth zoom)
+
+
+        // Saving local positions at start, to allow Hmove & Vmove
+        if (hMovingPlatforms != null)
+        {
+            hStartPosition = hMovingPlatforms.localPosition;
+        }
+
+        if (vMovingPlatforms != null)
+        {
+            vStartPosition = vMovingPlatforms.localPosition;
+        }
+
+
+        // Start the coroutine to smoothly zoom in on the player
         StartCoroutine(SmoothZoomIn());
+
+
     }
 
     private void FixedUpdate()
@@ -62,6 +93,12 @@ public class LevelRotation : MonoBehaviour
                 platform.Rotate(Vector3.forward * rotationSpeed * horizontalInput * Time.deltaTime);
             }
 
+            // Call for HMove and Vmove
+            MoveHPlatforms();
+            MoveVPlatforms();
+
+
+
             // Update last player position
             lastPlayerPosition = transform.position;
 
@@ -76,29 +113,51 @@ public class LevelRotation : MonoBehaviour
         float verticalOffset = mainCamera.orthographicSize * 0.5f;
 
         // Focus the camera on the player with the vertical offset applied
-        mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y + verticalOffset, mainCamera.transform.position.z);
+        mainCamera.transform.localPosition = new Vector3(transform.position.x, transform.position.y + verticalOffset, mainCamera.transform.position.z);
+    }
+
+
+    void MoveHPlatforms()
+    {
+        if (hMovingPlatforms != null)
+        {
+            // Move horizontal platforms left and right using a sine wave relative to time
+            float offset = Mathf.Sin(Time.time * hMoveSpeed) * hMoveDistance;
+            hMovingPlatforms.localPosition = new Vector3(hStartPosition.x + offset, hStartPosition.y, hStartPosition.z);
+        }
+    }
+
+    void MoveVPlatforms()
+    {
+        if (vMovingPlatforms != null)
+        {
+            // Move vertical platforms up and down using a sine wave relative to time
+            float offset = Mathf.Sin(Time.time * vMoveSpeed) * vMoveDistance;
+            vMovingPlatforms.localPosition = new Vector3(vStartPosition.x, vStartPosition.y + offset, vStartPosition.z);
+        }
     }
 
     IEnumerator SmoothZoomIn()
     {
-        // Zoom to a fixed size of 15 over zoomDuration seconds
+        // Zoom from the full level view to the target zoom size (15) over zoomDuration seconds
         float elapsedTime = 0f;
         float initialZoom = mainCamera.orthographicSize;
-        float fixedZoom = 15f; // Ensure the target zoom is fixed at 15
+        float targetZoom = 15f; // Lock the final zoom size to 15
 
         while (elapsedTime < zoomDuration)
         {
-            // Smoothly interpolate the orthographic size to the fixed value of 15
-            mainCamera.orthographicSize = Mathf.Lerp(initialZoom, fixedZoom, elapsedTime / zoomDuration);
+            // Smoothly interpolate the orthographic size from the full level view to the target zoom
+            mainCamera.orthographicSize = Mathf.Lerp(initialZoom, targetZoom, elapsedTime / zoomDuration);
 
-            AdjustCamera(); // Keep adjusting the camera position as needed
+            // Keep the camera focused on the player while zooming in
+            AdjustCamera();
 
             elapsedTime += Time.deltaTime;
-            yield return null;
+            yield return null; // Wait for the next frame
         }
 
-        // Ensure the final orthographic size is set to 15
-        mainCamera.orthographicSize = fixedZoom;
+        // Set the final orthographic size to the target value of 15
+        mainCamera.orthographicSize = targetZoom;
         isZooming = false; // End the zooming process
     }
 
