@@ -13,23 +13,16 @@ public class LevelRotation : MonoBehaviour
     private float currentRotation = 0f;
     private Vector2 lastPlayerPosition;
     private float targetRotation = 0f;
-    private float targetZoom; // The target orthographic size (player-focused zoom)
     private bool isZooming = true;
 
     void Start()
     {
         lastPlayerPosition = transform.position;
 
-        // Start the camera fully zoomed out, showing a large portion of the level
-        float fullLevelHeight = CalculateLevelBounds().size.y;
-        mainCamera.orthographicSize = fullLevelHeight * 1f; // Show a large view of the level (1.5x the height)
+        // Ensure the camera size is always 15 for consistent behavior across levels
+        mainCamera.orthographicSize = 15f;
 
-        // Set the target zoom to still show a good portion of the level
-        float levelHeight = fullLevelHeight;
-        float visibilityRatio = 0.9f; // 70% of the level will be visible after zoom
-        targetZoom = (levelHeight / 2) * visibilityRatio;
-
-        // Start the coroutine to smoothly zoom in on the player
+        // Start the coroutine to smoothly zoom in on the player (if you want to keep smooth zoom)
         StartCoroutine(SmoothZoomIn());
     }
 
@@ -73,7 +66,6 @@ public class LevelRotation : MonoBehaviour
             lastPlayerPosition = transform.position;
 
             // Adjust camera to keep focus on the player
-            
         }
         AdjustCamera();
     }
@@ -89,24 +81,24 @@ public class LevelRotation : MonoBehaviour
 
     IEnumerator SmoothZoomIn()
     {
-        // Zoom from the full view to the target zoom over zoomDuration seconds
+        // Zoom to a fixed size of 15 over zoomDuration seconds
         float elapsedTime = 0f;
         float initialZoom = mainCamera.orthographicSize;
+        float fixedZoom = 15f; // Ensure the target zoom is fixed at 15
 
         while (elapsedTime < zoomDuration)
         {
-            // Smoothly interpolate the orthographic size from the full level view to the target zoom
-            mainCamera.orthographicSize = Mathf.Lerp(initialZoom, targetZoom, elapsedTime / zoomDuration);
+            // Smoothly interpolate the orthographic size to the fixed value of 15
+            mainCamera.orthographicSize = Mathf.Lerp(initialZoom, fixedZoom, elapsedTime / zoomDuration);
 
-            // Keep the camera focused on the player while zooming in
-            AdjustCamera();
+            AdjustCamera(); // Keep adjusting the camera position as needed
 
             elapsedTime += Time.deltaTime;
-            yield return null; // Wait for the next frame
+            yield return null;
         }
 
-        // Set the final orthographic size to the target value
-        mainCamera.orthographicSize = targetZoom;
+        // Ensure the final orthographic size is set to 15
+        mainCamera.orthographicSize = fixedZoom;
         isZooming = false; // End the zooming process
     }
 
