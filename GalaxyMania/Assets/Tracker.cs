@@ -9,12 +9,9 @@ public class Tracker : MonoBehaviour
     public float distanceFromPlayer = 3f;  // Distance from the player
     public float rotationSpeed = 50f; // Speed of rotation around the player
 
-    private float angle; // Current angle around the player
-
     void Start()
     {
         GetComponent<SpriteRenderer>().color = Color.green; // Change color to red
-        angle = 0;
     }
 
     // Update is called once per frame

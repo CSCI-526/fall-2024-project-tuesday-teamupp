@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 10f;
     public Transform groundCheck;
     public LayerMask groundLayer;
-    public Transform player;
+    //public Transform player;
     public float jump = 20f;
     public Transform levelParent;
     private bool isGameOver = false; // Track if the game is over
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     void ApplyCustomGravity()
     {
         // Calculate the direction from the player downwards in world space
-        Vector2 gravityDirection = (player.position - levelParent.position).normalized;
+        Vector2 gravityDirection = (new Vector3(0,0,0) - levelParent.position).normalized;
 
         // Apply gravity towards the player's local down direction
         rb.AddForce(gravityDirection * Physics2D.gravity.magnitude, ForceMode2D.Force);
