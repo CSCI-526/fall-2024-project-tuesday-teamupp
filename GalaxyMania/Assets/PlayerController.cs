@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
             if (levelParent.name == "Level 2" && PlayerTriangleCollision.collectTriangle)
             {
                 Time.timeScale = 1f;  // Unfreeze the game
+                LevelRotation.rotationPaused = false;
+                PlayerDiamondCollision.ResetDiamondState();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
                 return;
             }
@@ -80,6 +82,10 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0f;  // Freeze the game
         gameOverCanvas.SetActive(true);  // Show the Game Over screen
         isGameOver = true;  // Mark the game as over
+
+        // Reset rotationPaused to ensure it's not frozen after respawn
+        LevelRotation.rotationPaused = false;
+        PlayerDiamondCollision.ResetDiamondState();
     }
 
     void CheckIfGrounded()
@@ -103,6 +109,11 @@ public class PlayerController : MonoBehaviour
         if (Input.anyKeyDown)
         {
             Time.timeScale = 1f;  // Unfreeze the game
+
+            // Reset rotationPaused before restarting the scene
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
         }
     }

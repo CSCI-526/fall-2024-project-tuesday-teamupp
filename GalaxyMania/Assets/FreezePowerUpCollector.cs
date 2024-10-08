@@ -28,5 +28,9 @@ public class PlayerDiamondCollision : MonoBehaviour
             hasDiamond = true; // Player has now collected the diamond
         }
     }
+    public static void ResetDiamondState()
+    {
+        PlayerDiamondCollision.hasDiamond = false; // Reset the diamond collection state
+    }
 
 }

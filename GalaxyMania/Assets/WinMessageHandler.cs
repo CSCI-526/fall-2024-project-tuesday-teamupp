@@ -42,6 +42,8 @@ public class WinMessageHandler : MonoBehaviour
                 // Display the win message
                 winText.text = "You Win!";
                 Time.timeScale = 0; // Optionally pause the game
+                LevelRotation.rotationPaused = false;
+                PlayerDiamondCollision.ResetDiamondState();
                 wonGame = true;
             }
         }
