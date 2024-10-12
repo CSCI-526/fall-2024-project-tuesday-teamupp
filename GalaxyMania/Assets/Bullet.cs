@@ -53,10 +53,15 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (playerRb != null)
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            if (player != null && !player.IsShieldActive())
             {
-                playerRb.AddForce(direction * playerDisplacementForce, ForceMode2D.Impulse);
+                // Apply force to the player only if the shield is NOT active
+                Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+                if (playerRb != null)
+                {
+                    playerRb.AddForce(direction * playerDisplacementForce, ForceMode2D.Impulse);
+                }
             }
             Destroy(gameObject);
         }

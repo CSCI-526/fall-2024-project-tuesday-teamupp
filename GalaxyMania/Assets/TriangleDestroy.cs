@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriangleDestroy : MonoBehaviour
+public class TriangleCollect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // This method is called when another collider enters the trigger collider attached to the triangle
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (PlayerTriangleCollision.collectTriangle)
+        PlayerTriangleCollision.collectTriangle = false;
+        // Check if the other collider has the tag "Player"
+        if (other.CompareTag("Player"))
         {
-            Destroy(gameObject); 
-        }
-    }
+            // Optionally, you can add code to update the player's score or inventory here
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            Debug.Log("Triangle collected!");
+            // Set the static variable to indicate a triangle has been collected
+            PlayerTriangleCollision.collectTriangle = true;
+
+            // Destroy this triangle GameObject
+            Destroy(gameObject);
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    private bool shieldActive = false; // Flag to indicate if the player is shielded
+    public float timer = 5f;
+    private SpriteRenderer spriteRenderer;
     public GameObject gameOverCanvas;
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -22,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         gameOverCanvas.SetActive(false);  // Ensure the Game Over screen is hidden at the start
     }
 
@@ -65,15 +70,16 @@ public class PlayerController : MonoBehaviour
         // If the player falls below a certain Y position, trigger game over
         if (transform.position.y < fallThresholdY)  // Adjust this value depending on your level's height
         {
-            if (levelParent.name == "Level 2" && PlayerTriangleCollision.collectTriangle)
+            if (levelParent.name == "Level 3" && PlayerTriangleCollision.collectTriangle)
             {
-                Time.timeScale = 1f;  // Unfreeze the game
-                LevelRotation.rotationPaused = false;
-                PlayerDiamondCollision.ResetDiamondState();
+                Time.timeScale = 1f;  // Unfreeze the game;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
                 return;
             }
-            GameOver();
+            else
+            {
+                GameOver();
+            }
         }
     }
 
@@ -97,7 +103,7 @@ public class PlayerController : MonoBehaviour
     void ApplyCustomGravity()
     {
         // Calculate the direction from the player downwards in world space
-        Vector2 gravityDirection = (new Vector3(0,0,0) - levelParent.position).normalized;
+        Vector2 gravityDirection = (new Vector3(0, 0, 0) - levelParent.position).normalized;
 
         // Apply gravity towards the player's local down direction
         rb.AddForce(gravityDirection * Physics2D.gravity.magnitude, ForceMode2D.Force);
@@ -116,5 +122,16 @@ public class PlayerController : MonoBehaviour
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
         }
+    }
+
+
+    public void SetShieldActive(bool isActive)
+    {
+        shieldActive = isActive;
+    }
+
+    public bool IsShieldActive()
+    {
+        return shieldActive;
     }
 }
