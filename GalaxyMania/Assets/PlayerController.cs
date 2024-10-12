@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     private bool shieldActive = false; // Flag to indicate if the player is shielded
-    public float timer = 5f;
+    public float timer = 10f;
     private SpriteRenderer spriteRenderer;
     public GameObject gameOverCanvas;
     private Rigidbody2D rb;
@@ -128,9 +128,21 @@ public class PlayerController : MonoBehaviour
     public void SetShieldActive(bool isActive)
     {
         shieldActive = isActive;
+        if (isActive)
+        {
+            StartCoroutine(ShieldTimer());
+        }
     }
 
-    public bool IsShieldActive()
+    private IEnumerator ShieldTimer()
+    {
+        spriteRenderer.color = Color.blue;
+        yield return new WaitForSeconds(timer);
+        spriteRenderer.color = Color.white;
+        shieldActive = false;
+    }
+
+public bool IsShieldActive()
     {
         return shieldActive;
     }

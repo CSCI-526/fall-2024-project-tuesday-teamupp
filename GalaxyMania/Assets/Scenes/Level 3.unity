@@ -1026,7 +1026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba45eae64c8bc843a600b30a5031cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldDuration: 5
 --- !u!1 &296908696
 GameObject:
   m_ObjectHideFlags: 0
@@ -5490,7 +5489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac7e881b279543f9ac32228ac0cd899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5
+  timer: 10
   gameOverCanvas: {fileID: 73716817}
   speed: 10
   groundCheck: {fileID: 726025477}
