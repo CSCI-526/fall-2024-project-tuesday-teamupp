@@ -21,4 +21,13 @@ public class TriangleCollect : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void Start()
+    {
+        if (PlayerTriangleCollision.collectTriangle)
+        {
+            Destroy(gameObject);
+            PlayerTriangleCollision.collectTriangle = false;
+        }
+    }
 }
