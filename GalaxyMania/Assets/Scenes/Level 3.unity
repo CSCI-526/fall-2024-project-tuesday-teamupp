@@ -5682,7 +5682,7 @@ MonoBehaviour:
     m_Bits: 256
   jump: 10
   levelParent: {fileID: 688976231}
-  borderThresholdDistance: 10
+  borderThresholdDistance: 30
 --- !u!50 &1659955509
 Rigidbody2D:
   serializedVersion: 4
