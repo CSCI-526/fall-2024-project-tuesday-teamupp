@@ -4726,7 +4726,7 @@ MonoBehaviour:
     m_Bits: 256
   jump: 15
   levelParent: {fileID: 936565159}
-  borderThresholdDistance: 30
+  borderThresholdDistance: 10
 --- !u!114 &1998799967
 MonoBehaviour:
   m_ObjectHideFlags: 0

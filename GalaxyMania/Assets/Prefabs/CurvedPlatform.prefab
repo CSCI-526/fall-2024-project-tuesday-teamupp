@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3368097125128686854}
   - component: {fileID: 8641296512678828837}
   - component: {fileID: 5540763395649826068}
+  - component: {fileID: 1616434644424604447}
   m_Layer: 0
   m_Name: CurvedPlatform
   m_TagString: Untagged
@@ -181,7 +182,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7333658582956801730}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -218,12 +219,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.6124573, y: 1.1586549}
-      - {x: 0.86072564, y: 1.9175426}
-      - {x: -0.13129006, y: 2.2770236}
-      - {x: -0.9105576, y: 1.9553815}
-      - {x: -1.683389, y: 1.074738}
-      - {x: -1.9970167, y: -0.25813246}
+    - - {x: -1.9970167, y: -0.25813246}
       - {x: -1.9852083, y: 0.25705528}
       - {x: -1.952629, y: 0.51611626}
       - {x: -1.8976475, y: 0.7583848}
@@ -249,3 +245,67 @@ PolygonCollider2D:
       - {x: 1.9937313, y: 0.2530273}
       - {x: 2.0051994, y: -0.24991384}
   m_UseDelaunayMesh: 0
+--- !u!68 &1616434644424604447
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7333658582956801730}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -1.9970167, y: -0.25813246}
+  - {x: -1.9852083, y: 0.25705528}
+  - {x: -1.952629, y: 0.51611626}
+  - {x: -1.8976475, y: 0.7583848}
+  - {x: -1.8071647, y: 1.0211521}
+  - {x: -1.7228426, y: 1.2118628}
+  - {x: -1.4767461, y: 1.6067482}
+  - {x: -1.1753111, y: 1.9322982}
+  - {x: -1.0088277, y: 2.0657153}
+  - {x: -0.654304, y: 2.2671223}
+  - {x: -0.47025338, y: 2.3324282}
+  - {x: -0.2843363, y: 2.3723485}
+  - {x: -0.0985461, y: 2.3855412}
+  - {x: 0.28391752, y: 2.3277738}
+  - {x: 0.4801843, y: 2.2589612}
+  - {x: 0.7051656, y: 2.1481957}
+  - {x: 0.86871254, y: 2.0497155}
+  - {x: 1.2331331, y: 1.7559725}
+  - {x: 1.5509299, y: 1.3909305}
+  - {x: 1.6853096, y: 1.185798}
+  - {x: 1.7995921, y: 0.9677913}
+  - {x: 1.890965, y: 0.7385609}
+  - {x: 1.9566153, y: 0.49975646}
+  - {x: 1.9937313, y: 0.2530273}
+  - {x: 2.0051994, y: -0.24991384}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
