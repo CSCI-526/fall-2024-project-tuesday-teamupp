@@ -20,7 +20,11 @@ public class PlayerController : MonoBehaviour
     public float jump = 20f;
     public Transform levelParent;
     private bool isGameOver = false; // Track if the game is over
-    public float fallThresholdY = -30f;
+    private bool isBeyondThreshold = false;
+
+    public float borderThresholdDistance = 300f;
+    private Collider2D borderCollider;  
+    private bool isCheckingDistance = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +44,10 @@ public class PlayerController : MonoBehaviour
             Jump();
             CheckIfGrounded();
             ApplyCustomGravity();
-            CheckIfPlayerFell();
+            if (isCheckingDistance && borderCollider != null)
+            {
+                CheckDistanceFromBorder();
+            }
         }
         else
         {
@@ -64,22 +71,43 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CheckIfPlayerFell()
+
+    void OnTriggerExit2D(Collider2D other)
     {
-        //Debug.Log($"Player Position: {transform.position}");
-        // If the player falls below a certain Y position, trigger game over
-        if (transform.position.y < fallThresholdY)  // Adjust this value depending on your level's height
+        if (other.CompareTag("Border"))
         {
-            if ((levelParent.name == "Level 3" || levelParent.name == "Level 2")  && PlayerTriangleCollision.collectTriangle)
-            {
-                Time.timeScale = 1f;  // Unfreeze the game;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
-                return;
-            }
-            else
-            {
-                GameOver();
-            }
+            borderCollider = other;  
+            isCheckingDistance = true;  
+        }
+    }
+
+    void CheckDistanceFromBorder()
+    {
+        // Calculate the distance from the player to the specific border
+        float distanceFromBorder = Vector2.Distance(borderCollider.ClosestPoint(transform.position), transform.position);
+        Debug.Log("Distance from border: " + distanceFromBorder + " Border threshold: " + borderThresholdDistance);
+
+        if (distanceFromBorder > borderThresholdDistance)
+        {
+            isBeyondThreshold = true;
+        }
+        else
+        {
+            isBeyondThreshold = false;  // Reset if the player moves back inside the threshold
+        }
+
+        // Check conditions based on the distance and whether the player collected the triangle
+        if (isBeyondThreshold && PlayerTriangleCollision.collectTriangle)
+        {
+            Time.timeScale = 1f;  // Unfreeze the game
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
+            isCheckingDistance = false;  // Stop checking distance
+        }
+        else if (isBeyondThreshold)
+        {
+            Debug.Log("Game Over triggered. Distance from border: " + distanceFromBorder + " Border threshold: " + borderThresholdDistance);
+            GameOver();
+            isCheckingDistance = false;  // Stop checking distance
         }
     }
 
