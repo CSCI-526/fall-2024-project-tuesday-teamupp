@@ -924,6 +924,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurvedPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 7333658582956801730, guid: 99accc5223a2546748c06b34b66912bf, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8641296512678828837, guid: 99accc5223a2546748c06b34b66912bf, type: 3}
       propertyPath: m_Creator
       value: 
@@ -6429,6 +6433,10 @@ PrefabInstance:
     - target: {fileID: 7333658582956801730, guid: 99accc5223a2546748c06b34b66912bf, type: 3}
       propertyPath: m_Name
       value: CurvedPlatofrm
+      objectReference: {fileID: 0}
+    - target: {fileID: 7333658582956801730, guid: 99accc5223a2546748c06b34b66912bf, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8641296512678828837, guid: 99accc5223a2546748c06b34b66912bf, type: 3}
       propertyPath: m_Creator
