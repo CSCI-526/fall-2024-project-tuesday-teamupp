@@ -26,6 +26,11 @@ public class PlayerDiamondCollision : MonoBehaviour
             Debug.Log("Diamond collected!");
             Destroy(collision.gameObject); // Remove the diamond from the scene
             hasDiamond = true; // Player has now collected the diamond
+            PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+            if (popUp != null)
+            {
+                popUp.ShowPopUp();
+            }
         }
     }
     public static void ResetDiamondState()
