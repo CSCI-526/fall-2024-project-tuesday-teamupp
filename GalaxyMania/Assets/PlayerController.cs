@@ -30,12 +30,20 @@ public class PlayerController : MonoBehaviour
         {"Level 2", false},
         {"Level 3", false}
     };
+    Send2Google send2Google;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         gameOverCanvas.SetActive(false);  // Ensure the Game Over screen is hidden at the start
+        GameObject senderObject = GameObject.Find("Person");
+
+        // Get the Send2Google component from the GameObject
+        if (senderObject != null)
+        {
+            send2Google = senderObject.GetComponent<Send2Google>();
+        }
     }
 
     // Update is called once per frame
@@ -164,6 +172,8 @@ public class PlayerController : MonoBehaviour
         // Reset rotationPaused to ensure it's not frozen after respawn
         LevelRotation.rotationPaused = false;
         PlayerDiamondCollision.ResetDiamondState();
+
+        // Call the Send method, passing the appropriate values
     }
 
     void CheckIfGrounded()
@@ -219,4 +229,21 @@ public bool IsShieldActive()
     {
         return shieldActive;
     }
+
+    void OnApplicationQuit()
+    {
+        //if (send2Google != null)
+        //{
+        //    send2Google.Send(triangleCollectionState["Level 2"], triangleCollectionState["Level 3"]);  // Example values for getsavelevel2 and getsavelevel3
+        //}
+    }
+
+    public void GameEnd()
+    {
+        //if (send2Google != null)
+        //{
+        //    send2Google.Send(triangleCollectionState["Level 2"], triangleCollectionState["Level 3"]);  // Example values for getsavelevel2 and getsavelevel3
+        //}
+    }
 }
+
