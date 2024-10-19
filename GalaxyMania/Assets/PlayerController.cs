@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public Transform levelParent;
     private bool isGameOver = false; // Track if the game is over
     private bool isBeyondThreshold = false;
-
+    private bool hasMoved = false; // Flag to track if the player has moved for the first time
     public float borderThresholdDistance = 300f;
     private Collider2D borderCollider;  
     private bool isCheckingDistance = false;
@@ -72,6 +72,18 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+        if (!hasMoved && moveInput != 0 && SceneManager.GetActiveScene().name == "Level 1")
+        {
+            hasMoved = true; // Set the flag so this only triggers once
+
+            // Find the PowerUpPopUp script and display the info text
+            PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+            if (popUp != null)
+            {
+                popUp.ShowInfoText("Welcome to Level 1! \n Use Arrow Keys to move around and explore.");
+            }
+        }
     }
 
     void Jump()
@@ -223,9 +235,15 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(timer);
         spriteRenderer.color = Color.white;
         shieldActive = false;
+        PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+        if (popUp != null)
+        {
+            popUp.ShowPopUp("Shield Deactivated!");
+        }
+
     }
 
-public bool IsShieldActive()
+    public bool IsShieldActive()
     {
         return shieldActive;
     }
