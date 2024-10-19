@@ -39,6 +39,19 @@ public class PlayerController : MonoBehaviour
         gameOverCanvas.SetActive(false);  // Ensure the Game Over screen is hidden at the start
         GameObject senderObject = GameObject.Find("Person");
 
+        // Instantiate the HUD
+        GameObject hudPrefab = Resources.Load<GameObject>("HUDCanvas");
+        if (hudPrefab != null)
+        {
+            Instantiate(hudPrefab);
+        }
+        else
+        {
+            Debug.LogError("HUDCanvas prefab not found in Resources folder.");
+        }
+
+
+
         // Get the Send2Google component from the GameObject
         if (senderObject != null)
         {
