@@ -20,22 +20,26 @@ public class PlayerDiamondCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+
         // Check if the object we collided with is the diamond
         if (collision.collider.CompareTag("Diamond"))
         {
             Debug.Log("Diamond collected!");
             Destroy(collision.gameObject); // Remove the diamond from the scene
             hasDiamond = true; // Player has now collected the diamond
-            PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+
+            // Show a custom pop-up for the diamond power-up
             if (popUp != null)
             {
-                popUp.ShowPopUp();
+                popUp.ShowPopUp("Diamond Collected! \nUse 'E' to activate.");
             }
         }
+
     }
+
     public static void ResetDiamondState()
     {
         PlayerDiamondCollision.hasDiamond = false; // Reset the diamond collection state
     }
-
 }

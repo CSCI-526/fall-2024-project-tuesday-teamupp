@@ -10,6 +10,8 @@ public class TriangleCollect : MonoBehaviour
     {
         //PlayerTriangleCollision.collectTriangle = false;
         // Check if the other collider has the tag "Player"
+        PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+
         if (other.CompareTag("Player"))
         {
             //// Optionally, you can add code to update the player's score or inventory here
@@ -19,6 +21,11 @@ public class TriangleCollect : MonoBehaviour
             //PlayerTriangleCollision.collectTriangle = true;
 
             string currentSceneName = SceneManager.GetActiveScene().name;
+
+            if (popUp != null)
+            {
+                popUp.ShowPopUp(currentSceneName + " checkpoint reached!");
+            }
 
             // Update the dictionary in PlayerController to mark the triangle as collected
             if (PlayerController.triangleCollectionState.ContainsKey(currentSceneName))

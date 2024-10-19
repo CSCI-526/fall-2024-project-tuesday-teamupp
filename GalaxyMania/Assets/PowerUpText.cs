@@ -12,8 +12,10 @@ public class PowerUpPopUp : MonoBehaviour
         popUpText.gameObject.SetActive(false); // Hide the text initially
     }
 
-    public void ShowPopUp()
+    public void ShowPopUp(string message)
     {
+        Debug.Log("Text shown:" + message);
+        popUpText.text = message; 
         popUpText.gameObject.SetActive(true); // Show the text
         timer = displayDuration; // Set the timer
     }
