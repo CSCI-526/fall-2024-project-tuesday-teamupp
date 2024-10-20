@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool isGameOver = false; // Track if the game is over
     private bool isBeyondThreshold = false;
     private HUDController hudController;
+    private bool hasMoved = false; // Flag to track if the player has moved for the first time
     public float borderThresholdDistance = 300f;
     private Collider2D borderCollider;  
     private bool isCheckingDistance = false;
