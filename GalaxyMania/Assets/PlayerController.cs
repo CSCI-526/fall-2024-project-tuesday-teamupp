@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Transform levelParent;
     private bool isGameOver = false; // Track if the game is over
     private bool isBeyondThreshold = false;
+    private HUDController hudController;
 
     public float borderThresholdDistance = 300f;
     private Collider2D borderCollider;  
@@ -39,15 +40,19 @@ public class PlayerController : MonoBehaviour
         gameOverCanvas.SetActive(false);  // Ensure the Game Over screen is hidden at the start
         GameObject senderObject = GameObject.Find("Person");
 
-        // Instantiate the HUD
+        // Get the HUDController instance
+        hudController = FindObjectOfType<HUDController>();
+
+        // Instantiate the HUD if needed and assign HUDController
         GameObject hudPrefab = Resources.Load<GameObject>("HUDCanvas");
-        if (hudPrefab != null)
+        if (hudPrefab != null && hudController == null)
         {
             Instantiate(hudPrefab);
+            hudController = FindObjectOfType<HUDController>(); // Find HUDController after instantiating the HUD
         }
-        else
+        else if (hudController == null)
         {
-            Debug.LogError("HUDCanvas prefab not found in Resources folder.");
+            Debug.LogError("HUDController or HUDCanvas not found!");
         }
 
 
@@ -227,6 +232,16 @@ public class PlayerController : MonoBehaviour
         if (isActive)
         {
             StartCoroutine(ShieldTimer());
+
+            // Notify HUDController to update shield UI
+            if (hudController != null)
+            {
+                hudController.ActivateShield();  // This updates the HUD and handles fading opacity and timer
+            }
+            else
+            {
+                Debug.LogError("HUDController reference is missing.");
+            }
         }
     }
 

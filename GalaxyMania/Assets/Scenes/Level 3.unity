@@ -1286,6 +1286,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &355582097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9175828600574412085, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
+  m_PrefabInstance: {fileID: 5275223447634706795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &355582099
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355582097}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &369831529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,6 +1577,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &434528002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 471557685743156520, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
+  m_PrefabInstance: {fileID: 5275223447634706795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &434528004
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434528002}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &473365874
 GameObject:
   m_ObjectHideFlags: 0
@@ -6886,6 +6920,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1679381099900986565, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679381099900986565, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679381099900986565, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.058279753
+      objectReference: {fileID: 0}
     - target: {fileID: 2352683786338332289, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
       propertyPath: m_Name
       value: HUDCanvas
@@ -6974,30 +7020,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4121219218137645296, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7075313042620621735, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: freezeUI
+      value: 
+      objectReference: {fileID: 355582097}
     - target: {fileID: 7075313042620621735, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
-      propertyPath: levelParent
+      propertyPath: shieldUI
       value: 
-      objectReference: {fileID: 688976231}
-    - target: {fileID: 7075313042620621735, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
-      propertyPath: referencePoint
-      value: 
-      objectReference: {fileID: 1292750370}
-    - target: {fileID: 7466949435642054056, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 434528002}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9175828600574412085, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 355582099}
+    - targetCorrespondingSourceObject: {fileID: 471557685743156520, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 434528004}
   m_SourcePrefab: {fileID: 100100000, guid: a2da8eef4c678eb43929c4396f68aad8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

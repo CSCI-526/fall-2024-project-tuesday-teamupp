@@ -13,8 +13,20 @@ public class PlayerDiamondCollision : MonoBehaviour
         {
             hasDiamond = false;
             Debug.Log("Diamond powerup used!");
+
             // Call the coroutine to pause the rotation for 10 seconds
             StartCoroutine(FindObjectOfType<LevelRotation>().PauseRotationForSeconds(10f));
+
+            // Notify HUDController to update UI for Freeze power-up
+            HUDController hudController = FindObjectOfType<HUDController>(); // NEW BLOCK
+            if (hudController != null)
+            {
+                hudController.UseFreezePowerUp();  // Trigger Freeze UI update and angle color change
+            }
+            else
+            {
+                Debug.LogError("HUDController not found!");
+            }
         }
     }
 
@@ -26,16 +38,18 @@ public class PlayerDiamondCollision : MonoBehaviour
             Debug.Log("Diamond collected!");
             Destroy(collision.gameObject); // Remove the diamond from the scene
             hasDiamond = true; // Player has now collected the diamond
-            PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
-            if (popUp != null)
+
+            // Notify HUDController to show Freeze UI
+            HUDController hudController = FindObjectOfType<HUDController>(); // NEW LINE
+            if (hudController != null)
             {
-                popUp.ShowPopUp();
+                hudController.CollectFreeze();  // NEW LINE - Trigger Freeze UI collection update
             }
         }
     }
+
     public static void ResetDiamondState()
     {
         PlayerDiamondCollision.hasDiamond = false; // Reset the diamond collection state
     }
-
 }
