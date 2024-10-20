@@ -9,6 +9,7 @@ public class NextSceneLoader : MonoBehaviour
         if (other.CompareTag("Player"))  // Ensure the player has the tag "Player"
         {
             Debug.Log("Player entered trigger zone.");
+
             LoadNextScene();  // Call the function to load the next scene
         }
     }
@@ -16,6 +17,11 @@ public class NextSceneLoader : MonoBehaviour
     void LoadNextScene()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;  // Get the current scene name
+        PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+        if (popUp != null)
+        {
+            popUp.ShowPopUp(currentSceneName + " Cleared!");
+        }
 
         if (currentSceneName == "Level 1")  // Check if the current scene is Level 1
         {

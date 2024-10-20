@@ -32,6 +32,8 @@ public class PlayerDiamondCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+
         // Check if the object we collided with is the diamond
         if (collision.collider.CompareTag("Diamond"))
         {
@@ -46,6 +48,7 @@ public class PlayerDiamondCollision : MonoBehaviour
                 hudController.CollectFreeze();  // NEW LINE - Trigger Freeze UI collection update
             }
         }
+
     }
 
     public static void ResetDiamondState()
