@@ -32,14 +32,18 @@ public class PlayerDiamondCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
-
         // Check if the object we collided with is the diamond
         if (collision.collider.CompareTag("Diamond"))
         {
             Debug.Log("Diamond collected!");
             Destroy(collision.gameObject); // Remove the diamond from the scene
             hasDiamond = true; // Player has now collected the diamond
+
+            PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+            if (popUp != null)
+            {
+                popUp.ShowPopUp("Press E to activate!");
+            }
 
             // Notify HUDController to show Freeze UI
             HUDController hudController = FindObjectOfType<HUDController>(); // NEW LINE
