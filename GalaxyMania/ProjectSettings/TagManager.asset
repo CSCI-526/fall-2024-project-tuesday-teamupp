@@ -8,6 +8,7 @@ TagManager:
   - Diamond
   - Level
   - Border
+  - ReferencePoint
   layers:
   - Default
   - TransparentFX
