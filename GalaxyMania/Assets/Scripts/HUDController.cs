@@ -93,7 +93,7 @@ public class HUDController : MonoBehaviour
         {
             float currentRotationZ = levelParent.rotation.eulerAngles.z;
             if (currentRotationZ > 180f) currentRotationZ -= 360f;
-            angleText.text = "Angle: " + Mathf.RoundToInt(currentRotationZ) + "°";  // Append the degree symbol
+            angleText.text = "Angle: " + Mathf.RoundToInt(currentRotationZ) + "\u00B0"; // Append the degree symbol
         }
     }
 
