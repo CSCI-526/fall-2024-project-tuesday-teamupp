@@ -9,6 +9,8 @@ TagManager:
   - Level
   - Border
   - ReferencePoint
+  - TeleportSource
+  - TeleportTarget
   layers:
   - Default
   - TransparentFX
