@@ -30,14 +30,14 @@ public class PlayerController : MonoBehaviour
         {"Level 2", false},
         {"Level 3", false}
     };
-    Send2Google send2Google;
+    //Send2Google send2Google;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         gameOverCanvas.SetActive(false);  // Ensure the Game Over screen is hidden at the start
-        GameObject senderObject = GameObject.Find("Person");
+        //GameObject senderObject = GameObject.Find("Person");
 
         // Get the HUDController instance
         hudController = FindObjectOfType<HUDController>();
@@ -57,10 +57,10 @@ public class PlayerController : MonoBehaviour
 
 
         // Get the Send2Google component from the GameObject
-        if (senderObject != null)
-        {
-            send2Google = senderObject.GetComponent<Send2Google>();
-        }
+        //if (senderObject != null)
+        //{
+        //    send2Google = senderObject.GetComponent<Send2Google>();
+        //}
     }
 
     // Update is called once per frame
@@ -193,6 +193,10 @@ public class PlayerController : MonoBehaviour
         // Call the Send method, passing the appropriate values
     }
 
+    public bool IsGameOver()
+    {
+        return isGameOver;  // Return whether the game is over
+    }
     void CheckIfGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 2f, groundLayer);

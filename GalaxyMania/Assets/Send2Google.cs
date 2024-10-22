@@ -1,19 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class Send2Google : MonoBehaviour
 {
-    private string URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdYDoB93-Cv6HGU2ZeAenc5O_3o5X4RIr8HE4qULU35LM1whQ/formResponse";
+    private string URL = "https://docs.google.com/forms/u/1/d/e/1FAIpQLSfTin5vQazJ86KlDQDvbGMqzUP0SRNv2yty84a0xrzvYMbEMA/formResponse";
+    private string selectedAnswer1;
+    private string selectedAnswer2;
     private long sessionID;
-    private bool getsavelevel2;
-    private bool getsavelevel3;
+    //private string portalfinder;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     private void Awake()
     {
@@ -21,22 +23,31 @@ public class Send2Google : MonoBehaviour
         sessionID = DateTime.Now.Ticks;
     }
 
-
-    public void Send(bool getsavelevel2, bool getsavelevel3)
+    public void Send(string selectedAnswer1, string selectedAnswer2)
     {
-        StartCoroutine(Post(sessionID.ToString(), getsavelevel2.ToString(), getsavelevel3.ToString()));
+        if (!string.IsNullOrEmpty(selectedAnswer1))
+        {
+            StartCoroutine(PostLevel1(sessionID.ToString(), selectedAnswer1));
+        }
+        if (!string.IsNullOrEmpty(selectedAnswer2))
+        {
+            StartCoroutine(PostLevel2(sessionID.ToString(), selectedAnswer2));
+        }
     }
+    //public void Send(bool getsavelevel2, bool getsavelevel3)
+    //{
+    //    StartCoroutine(Post(sessionID.ToString(), getsavelevel2.ToString(), getsavelevel3.ToString()));
+    //}
 
 
-    private IEnumerator Post(string sessionID, string getsavelevel2, string getsavelevel3)
+    private IEnumerator PostLevel1(string sessionID, string selectedAnswer1)
     {
-        // Create the form and enter responses
         WWWForm form = new WWWForm();
-        form.AddField("entry.995316009", sessionID);
-        form.AddField("entry.973479010", getsavelevel2);
-        form.AddField("entry.1047782149", getsavelevel3);
 
-        // Send responses and verify result
+        Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer1}");
+        form.AddField("entry.995215545", sessionID);  // For session ID
+        form.AddField("entry.402189590", selectedAnswer1); 
+    
         using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
         {
             yield return www.SendWebRequest();
@@ -52,12 +63,32 @@ public class Send2Google : MonoBehaviour
         }
     }
 
+    private IEnumerator PostLevel2(string sessionID, string selectedAnswer2)
+    {
+        WWWForm form = new WWWForm();
 
+        Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer2}");
+        form.AddField("entry.995215545", sessionID);  // For session ID
+        form.AddField("entry.2136440181", selectedAnswer2); 
 
+        using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
