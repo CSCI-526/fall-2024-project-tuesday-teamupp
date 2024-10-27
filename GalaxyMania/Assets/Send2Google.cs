@@ -9,6 +9,7 @@ public class Send2Google : MonoBehaviour
     private string selectedAnswer1;
     private string selectedAnswer2;
     private long sessionID;
+    private string test_url = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfdYAsohFb9clbZX-PXhy8QWj1zRPOXxT3RQ_YdAkrOrDWgCA/formResponse";
     //private string portalfinder;
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,37 @@ public class Send2Google : MonoBehaviour
         if (!string.IsNullOrEmpty(selectedAnswer2))
         {
             StartCoroutine(PostLevel2(sessionID.ToString(), selectedAnswer2));
+        }
+    }
+
+    public void SendTest(string selectedAnswer1, string selectedAnswer2)
+    {
+        if (!string.IsNullOrEmpty(selectedAnswer1))
+        {
+            StartCoroutine(PostTestLevel1(sessionID.ToString(), selectedAnswer1));
+        }
+    }
+
+    private IEnumerator PostTestLevel1(string sessionID, string selectedAnswer1)
+    {
+        WWWForm form = new WWWForm();
+
+        Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer1}");
+        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.1165852626", selectedAnswer1);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
         }
     }
     //public void Send(bool getsavelevel2, bool getsavelevel3)

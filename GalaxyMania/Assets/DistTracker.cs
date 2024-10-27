@@ -18,6 +18,8 @@ public class DistTracker : MonoBehaviour
     private bool hasBeenNearPortal = false;
     private bool portalTracker = false;
     private bool flagTracker = false;
+    private bool reachflag = false;
+    private bool check2flagand2portal = false;
     //private bool newScene = false;
     //private PlayerController playerController;
 
@@ -85,7 +87,7 @@ public class DistTracker : MonoBehaviour
                 conditionMet = true;
                 message = $"Goes directly to the flag in {currentLevelName} in {timer} seconds";
                 Debug.Log(message);
-
+                reachflag = true;
                 flagTracker = true;
                 selectedAnswer1 = "Goes directly to the flag";
                 selectedAnswer2 = null;
@@ -103,10 +105,25 @@ public class DistTracker : MonoBehaviour
                 selectedAnswer2 = null;
 
             }
+
+            if ((!check2flagand2portal) && reachflag && distanceToPortal < portalDistanceThreshold && distanceToFlag > distanceToPortal)
+            {
+                conditionMet = true;
+                check2flagand2portal = true;
+                hasBeenNearPortal = true;
+                message = $"Goes to the flag and goes to the portal afterwards in {currentLevelName} in {timer} seconds";
+                Debug.Log(message);
+                portalTracker = true;
+                selectedAnswer1 = "Goes to the flag and goes to the portal afterwards";
+                selectedAnswer2 = null;
+
+            }
+
             if (send2Google != null && !string.IsNullOrEmpty(selectedAnswer1))
             {
                 Debug.Log("Sending Level 1 answers to Google Forms");
-                send2Google.Send(selectedAnswer1, selectedAnswer2);
+                //send2Google.Send(selectedAnswer1, selectedAnswer2);
+                send2Google.SendTest(selectedAnswer1, selectedAnswer2);
             }
         }
 
