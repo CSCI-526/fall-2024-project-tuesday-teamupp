@@ -162,6 +162,8 @@ public class PlayerController : MonoBehaviour
                         // Reload this level
                         Debug.Log("Reloading " + levelName);
                         Time.timeScale = 1f;  // Unfreeze the game
+                        LevelRotation.rotationPaused = false;
+                        PlayerDiamondCollision.ResetDiamondState();
                         SceneManager.LoadScene(levelName);
                         isCheckingDistance = false;
                         return;
@@ -175,6 +177,8 @@ public class PlayerController : MonoBehaviour
 
             // If no level can be reloaded, trigger game over
             Debug.Log("No levels available for reloading. Game Over.");
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
             GameOver();
             isCheckingDistance = false;
         }
