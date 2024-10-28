@@ -36,11 +36,15 @@ public class NextSceneLoader : MonoBehaviour
         {
             distTracker.sendlevel1();
             // Load the next level
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Level 2");
         }
         else if (currentSceneName == "Level 2")  // Check if the current scene is Level 1
         {
             // Load the next level
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Level 3");
         }
     }
