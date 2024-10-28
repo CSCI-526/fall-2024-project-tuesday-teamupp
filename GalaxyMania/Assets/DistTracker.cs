@@ -7,8 +7,8 @@ public class DistTracker : MonoBehaviour
     public GameObject portal;
     public GameObject ball;
     Send2Google send2Google;
-
-
+    public string selectedAnswer1 = null;
+    public string selectedAnswer2 = null;
     public float portalDistanceThreshold = 7f; // Adjustable threshold for portal proximity
     public float maxPortalDistance = 20f; // Distance threshold to check if the ball is far from the portal
     public float flagDistanceThreshold = 6f; // Distance threshold to check if the ball is close to the flag
@@ -75,9 +75,6 @@ public class DistTracker : MonoBehaviour
         string message = null;
         string currentLevelName = GetCurrentLevelName();
 
-        string selectedAnswer1 = null;
-        string selectedAnswer2 = null;
-
         //bool isPlayerDead = playerController != null && playerController.IsGameOver();
         //newScene = false;
         if (currentLevelName == "Level 1")
@@ -121,9 +118,9 @@ public class DistTracker : MonoBehaviour
 
             if (send2Google != null && !string.IsNullOrEmpty(selectedAnswer1))
             {
-                Debug.Log("Sending Level 1 answers to Google Forms");
+                //Debug.Log("Sending Level 1 answers to Google Forms");
                 //send2Google.Send(selectedAnswer1, selectedAnswer2);
-                send2Google.SendTest(selectedAnswer1, selectedAnswer2);
+                //send2Google.SendTest(selectedAnswer1, selectedAnswer2);
             }
         }
 
@@ -162,6 +159,15 @@ public class DistTracker : MonoBehaviour
                 Debug.Log("Sending Level 2 answers to Google Forms");
                 send2Google.Send(selectedAnswer1, selectedAnswer2);
             }
+        }
+    }
+    public void sendlevel1()
+    {
+        if (send2Google != null && !string.IsNullOrEmpty(selectedAnswer1))
+        {
+            Debug.Log("Sending Level 1 answers to Google Forms");
+            //send2Google.Send(selectedAnswer1, selectedAnswer2);
+            send2Google.SendTest(selectedAnswer1, selectedAnswer2);
         }
     }
 }
