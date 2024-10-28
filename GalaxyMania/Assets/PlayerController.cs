@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         {"Level 2", false},
         {"Level 3", false}
     };
-    //Send2Google send2Google;
+    DistTracker distTracker;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +38,12 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         gameOverCanvas.SetActive(false);  // Ensure the Game Over screen is hidden at the start
         //GameObject senderObject = GameObject.Find("Person");
+        GameObject senderObject = GameObject.Find("DistTracker");
+        // Get the Send2Google component from the GameObject
+        if (senderObject != null)
+        {
+            distTracker = senderObject.GetComponent<DistTracker>();
+        }
 
         // Get the HUDController instance
         hudController = FindObjectOfType<HUDController>();
@@ -162,6 +168,8 @@ public class PlayerController : MonoBehaviour
                         // Reload this level
                         Debug.Log("Reloading " + levelName);
                         Time.timeScale = 1f;  // Unfreeze the game
+                        LevelRotation.rotationPaused = false;
+                        PlayerDiamondCollision.ResetDiamondState();
                         SceneManager.LoadScene(levelName);
                         isCheckingDistance = false;
                         return;
@@ -175,6 +183,8 @@ public class PlayerController : MonoBehaviour
 
             // If no level can be reloaded, trigger game over
             Debug.Log("No levels available for reloading. Game Over.");
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
             GameOver();
             isCheckingDistance = false;
         }
@@ -182,6 +192,7 @@ public class PlayerController : MonoBehaviour
 
     void GameOver()
     {
+        distTracker.sendlevel1();
         Time.timeScale = 0f;  // Freeze the game
         gameOverCanvas.SetActive(true);  // Show the Game Over screen
         isGameOver = true;  // Mark the game as over
