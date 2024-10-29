@@ -157,7 +157,7 @@ public class DistTracker : MonoBehaviour
             if (send2Google != null && !string.IsNullOrEmpty(selectedAnswer2))
             {
                 Debug.Log("Sending Level 2 answers to Google Forms");
-                send2Google.Send(selectedAnswer1, selectedAnswer2);
+                //send2Google.Send(selectedAnswer1, selectedAnswer2);
             }
         }
     }

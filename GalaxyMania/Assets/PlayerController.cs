@@ -192,7 +192,11 @@ public class PlayerController : MonoBehaviour
 
     void GameOver()
     {
-        distTracker.sendlevel1();
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if ( currentSceneName != "Level 3")
+        {
+            distTracker.sendlevel1();
+        }
         Time.timeScale = 0f;  // Freeze the game
         gameOverCanvas.SetActive(true);  // Show the Game Over screen
         isGameOver = true;  // Mark the game as over
