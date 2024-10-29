@@ -5662,7 +5662,6 @@ GameObject:
   - component: {fileID: 1659955509}
   - component: {fileID: 1659955508}
   - component: {fileID: 1659955507}
-  - component: {fileID: 1659955506}
   - component: {fileID: 1659955505}
   - component: {fileID: 1659955504}
   - component: {fileID: 1659955503}
@@ -5786,21 +5785,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1659955506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659955501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29ac0769663a74beca739bb6732ec91d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportHeightOffset: 1
-  colorTolerance: 0.02
-  moveThreshold: 5
 --- !u!114 &1659955507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7146,3 +7130,4 @@ SceneRoots:
   - {fileID: 73716821}
   - {fileID: 5275223447634706795}
   - {fileID: 1292750370}
+  - {fileID: 1556964639}
