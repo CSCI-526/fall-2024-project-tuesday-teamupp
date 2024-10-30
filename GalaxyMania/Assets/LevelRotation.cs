@@ -74,6 +74,9 @@ public class LevelRotation : MonoBehaviour
                 platform.Rotate(Vector3.forward * rotationSpeed * horizontalInput * Time.deltaTime);
             }
         }
+
+         MoveHPlatforms();
+         MoveVPlatforms();
     }
 
     void Update()
@@ -92,12 +95,6 @@ public class LevelRotation : MonoBehaviour
             {
                 platform.Rotate(Vector3.forward * rotationSpeed * horizontalInput * Time.deltaTime);
             }
-
-            // Call for HMove and Vmove
-            MoveHPlatforms();
-            MoveVPlatforms();
-
-
 
             // Update last player position
             lastPlayerPosition = transform.position;
