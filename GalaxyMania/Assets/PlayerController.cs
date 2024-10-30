@@ -25,11 +25,6 @@ public class PlayerController : MonoBehaviour
     public float borderThresholdDistance = 300f;
     private Collider2D borderCollider;  
     private bool isCheckingDistance = false;
-    public static Dictionary<string, bool> triangleCollectionState = new Dictionary<string, bool>
-    {
-        {"Level 2", false},
-        {"Level 3", false}
-    };
     DistTracker distTracker;
     // Start is called before the first frame update
     void Start()
@@ -147,42 +142,6 @@ public class PlayerController : MonoBehaviour
 
         if (isBeyondThreshold)
         {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            string[] parts = currentSceneName.Split(' ');
-            if (parts.Length != 2 || !int.TryParse(parts[1], out int currentLevelNumber))
-            {
-                Debug.LogError("Invalid scene name format.");
-                return;
-            }
-
-            // Iterate backwards through the levels from currentLevelNumber down to the first level
-            for (int level = currentLevelNumber; level >= 2; level--)
-            {
-                string levelName = "Level " + level;
-                Debug.Log(triangleCollectionState[levelName]);
-                // Check if the level exists in the dictionary
-                if (triangleCollectionState.TryGetValue(levelName, out bool canReload))
-                {
-                    if (canReload)
-                    {
-                        // Reload this level
-                        Debug.Log("Reloading " + levelName);
-                        Time.timeScale = 1f;  // Unfreeze the game
-                        LevelRotation.rotationPaused = false;
-                        PlayerDiamondCollision.ResetDiamondState();
-                        SceneManager.LoadScene(levelName);
-                        isCheckingDistance = false;
-                        return;
-                    }
-                    else
-                    {
-                        Debug.Log(levelName + " cannot be reloaded, checking previous level.");
-                    }
-                }
-            }
-
-            // If no level can be reloaded, trigger game over
-            Debug.Log("No levels available for reloading. Game Over.");
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             GameOver();
@@ -239,7 +198,8 @@ public class PlayerController : MonoBehaviour
             PlayerDiamondCollision.ResetDiamondState();
 
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
-            SceneManager.LoadScene("Level 1");
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
         }
     }
 
