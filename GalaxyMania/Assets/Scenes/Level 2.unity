@@ -5709,7 +5709,6 @@ GameObject:
   - component: {fileID: 1998799967}
   - component: {fileID: 1998799969}
   - component: {fileID: 1998799971}
-  - component: {fileID: 1998799972}
   - component: {fileID: 1998799973}
   - component: {fileID: 1998799974}
   m_Layer: 0
@@ -5911,18 +5910,6 @@ MonoBehaviour:
   winText: {fileID: 868055787}
   targetColor: {r: 0.43529412, g: 0.16078432, b: 0.101960786, a: 1}
   colorTolerance: 0.02
---- !u!114 &1998799972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998799961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de6f1d901a43d5b4cbcc718ff4abf4ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1998799973
 MonoBehaviour:
   m_ObjectHideFlags: 0
