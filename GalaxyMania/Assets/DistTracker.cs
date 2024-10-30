@@ -12,12 +12,11 @@ public class DistTracker : MonoBehaviour
     public float portalDistanceThreshold = 7f; // Adjustable threshold for portal proximity
     public float maxPortalDistance = 20f; // Distance threshold to check if the ball is far from the portal
     public float flagDistanceThreshold = 6f; // Distance threshold to check if the ball is close to the flag
-
     private float timer;
     private bool conditionMet;
     private bool hasBeenNearPortal = false;
-    private bool portalTracker = false;
-    private bool flagTracker = false;
+    //private bool portalTracker = false;
+    //private bool flagTracker = false;
     private bool reachflag = false;
     private bool check2flagand2portal = false;
     //private bool newScene = false;
@@ -85,7 +84,7 @@ public class DistTracker : MonoBehaviour
                 message = $"Goes directly to the flag in {currentLevelName} in {timer} seconds";
                 Debug.Log(message);
                 reachflag = true;
-                flagTracker = true;
+                //flagTracker = true;
                 selectedAnswer1 = "Goes directly to the flag";
                 selectedAnswer2 = null;
 
@@ -97,7 +96,7 @@ public class DistTracker : MonoBehaviour
                 hasBeenNearPortal = true;
                 message = $"Goes to the portal in {currentLevelName} in {timer} seconds";
                 Debug.Log(message);
-                portalTracker = true;
+                //portalTracker = true;
                 selectedAnswer1 = "Goes directly to the portal";
                 selectedAnswer2 = null;
 
@@ -110,62 +109,100 @@ public class DistTracker : MonoBehaviour
                 hasBeenNearPortal = true;
                 message = $"Goes to the flag and goes to the portal afterwards in {currentLevelName} in {timer} seconds";
                 Debug.Log(message);
-                portalTracker = true;
+                //portalTracker = true;
                 selectedAnswer1 = "Goes to the flag and goes to the portal afterwards";
                 selectedAnswer2 = null;
 
             }
 
-            if (send2Google != null && !string.IsNullOrEmpty(selectedAnswer1))
-            {
-                //Debug.Log("Sending Level 1 answers to Google Forms");
-                //send2Google.Send(selectedAnswer1, selectedAnswer2);
-                //send2Google.SendTest(selectedAnswer1, selectedAnswer2);
-            }
+            //if (send2Google != null && !string.IsNullOrEmpty(selectedAnswer1))
+            //{
+            //    //Debug.Log("Sending Level 1 answers to Google Forms");
+            //    //send2Google.Send(selectedAnswer1, selectedAnswer2);
+            //    //send2Google.SendTest(selectedAnswer1, selectedAnswer2);
+            //}
         }
 
         if (currentLevelName == "Level 2")
         {
-            if (portalTracker)
-            {
-                selectedAnswer1 = "Goes directly to the portal";
-            }
-            if (flagTracker)
-            {
-                selectedAnswer1 = "Goes directly to the flag";
-            }
+        //    if (portalTracker)
+        //    {
+        //        selectedAnswer1 = "Goes directly to the portal";
+        //    }
+        //    if (flagTracker)
+        //    {
+        //        selectedAnswer1 = "Goes directly to the flag";
+        //    }
 
-            if (!conditionMet && (distanceToPortal > maxPortalDistance) && (distanceToFlag < flagDistanceThreshold) && (!hasBeenNearPortal))
-            {
-                conditionMet = true;
-                message = $"Goes directly to the flag in {currentLevelName} in {timer} seconds";
-                Debug.Log(message);
+        //    if (!conditionMet && (distanceToPortal > maxPortalDistance) && (distanceToFlag < flagDistanceThreshold) && (!hasBeenNearPortal))
+        //    {
+        //        conditionMet = true;
+        //        message = $"Goes directly to the flag in {currentLevelName} in {timer} seconds";
+        //        Debug.Log(message);
                 
-                selectedAnswer2 = "Goes directly to the flag";
-            }
+        //        selectedAnswer2 = "Goes directly to the flag";
+        //    }
 
-            if (!conditionMet && distanceToPortal < portalDistanceThreshold && distanceToFlag > distanceToPortal)
-            {
-                conditionMet = true;
-                hasBeenNearPortal = true;
-                message = $"Goes to the portal in {currentLevelName} in {timer} seconds";
-                Debug.Log(message);
+        //    if (!conditionMet && distanceToPortal < portalDistanceThreshold && distanceToFlag > distanceToPortal)
+        //    {
+        //        conditionMet = true;
+        //        hasBeenNearPortal = true;
+        //        message = $"Goes to the portal in {currentLevelName} in {timer} seconds";
+        //        Debug.Log(message);
                 
-                selectedAnswer2 = "Goes directly to the portal";
-            }
+        //        selectedAnswer2 = "Goes directly to the portal";
+        //    }
             
-            if (send2Google != null && !string.IsNullOrEmpty(selectedAnswer2))
-            {
-                Debug.Log("Sending Level 2 answers to Google Forms");
-                //send2Google.Send(selectedAnswer1, selectedAnswer2);
-            }
+        //    if (send2Google != null && !string.IsNullOrEmpty(selectedAnswer2))
+        //    {
+        //        Debug.Log("Sending Level 2 answers to Google Forms");
+        //        //send2Google.Send(selectedAnswer1, selectedAnswer2);
+        //    }
         }
+
+        if (!conditionMet && (distanceToPortal > maxPortalDistance) && (distanceToFlag < flagDistanceThreshold) && (!hasBeenNearPortal))
+        {
+            conditionMet = true;
+            message = $"Goes directly to the flag in {currentLevelName} in {timer} seconds";
+            Debug.Log(message);
+            reachflag = true;
+            //flagTracker = true;
+            selectedAnswer2 = "Goes directly to the flag";
+            selectedAnswer1 = null;
+
+        }
+
+        if (!conditionMet && distanceToPortal < portalDistanceThreshold && distanceToFlag > distanceToPortal)
+        {
+            conditionMet = true;
+            hasBeenNearPortal = true;
+            message = $"Goes to the portal in {currentLevelName} in {timer} seconds";
+            Debug.Log(message);
+            //portalTracker = true;
+            selectedAnswer2 = "Goes directly to the portal";
+            selectedAnswer1 = null;
+
+        }
+
+        if ((!check2flagand2portal) && reachflag && distanceToPortal < portalDistanceThreshold && distanceToFlag > distanceToPortal)
+        {
+            conditionMet = true;
+            check2flagand2portal = true;
+            hasBeenNearPortal = true;
+            message = $"Goes to the flag and goes to the portal afterwards in {currentLevelName} in {timer} seconds";
+            Debug.Log(message);
+            //portalTracker = true;
+            selectedAnswer2 = "Goes to the flag and goes to the portal afterwards";
+            selectedAnswer1 = null;
+
+        }
+
     }
     public void sendlevel1()
     {
-        if (send2Google != null && !string.IsNullOrEmpty(selectedAnswer1))
+        if (send2Google != null && (!string.IsNullOrEmpty(selectedAnswer1) || !string.IsNullOrEmpty(selectedAnswer2)))
         {
-            Debug.Log("Sending Level 1 answers to Google Forms");
+            Debug.Log("Sending Level 1 or 2 answers to Google Forms");
             //send2Google.Send(selectedAnswer1, selectedAnswer2);
             send2Google.SendTest(selectedAnswer1, selectedAnswer2);
         }

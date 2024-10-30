@@ -42,6 +42,7 @@ public class NextSceneLoader : MonoBehaviour
         }
         else if (currentSceneName == "Level 2")  // Check if the current scene is Level 1
         {
+            distTracker.sendlevel1();
             // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
