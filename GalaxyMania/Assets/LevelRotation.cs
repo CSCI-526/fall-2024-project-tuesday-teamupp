@@ -74,6 +74,9 @@ public class LevelRotation : MonoBehaviour
                 platform.Rotate(Vector3.forward * rotationSpeed * horizontalInput * Time.deltaTime);
             }
         }
+
+         MoveHPlatforms();
+         MoveVPlatforms();
     }
 
     void Update()
@@ -92,12 +95,6 @@ public class LevelRotation : MonoBehaviour
             {
                 platform.Rotate(Vector3.forward * rotationSpeed * horizontalInput * Time.deltaTime);
             }
-
-            // Call for HMove and Vmove
-            MoveHPlatforms();
-            MoveVPlatforms();
-
-
 
             // Update last player position
             lastPlayerPosition = transform.position;
@@ -139,6 +136,10 @@ public class LevelRotation : MonoBehaviour
 
     IEnumerator SmoothZoomIn()
     {
+        
+        // Hold the zoomed-out view for 2 seconds
+        yield return new WaitForSeconds(1.5f);
+        
         // Zoom from the full level view to the target zoom size (15) over zoomDuration seconds
         float elapsedTime = 0f;
         float initialZoom = mainCamera.orthographicSize;
