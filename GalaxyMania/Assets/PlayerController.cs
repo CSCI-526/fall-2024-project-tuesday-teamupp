@@ -20,13 +20,11 @@ public class PlayerController : MonoBehaviour
     public float jump = 20f;
     public Transform levelParent;
     private bool isGameOver = false; // Track if the game is over
-    
-    //private bool isBeyondThreshold = false;
+    private bool isBeyondThreshold = false;
     private HUDController hudController;
-
-    //public float borderThresholdDistance = 300f;
+    public float borderThresholdDistance = 300f;
     private Collider2D borderCollider;  
-    //private bool isCheckingDistance = false;
+    private bool isCheckingDistance = false;
     DistTracker distTracker;
     // Start is called before the first frame update
     void Start()
@@ -76,10 +74,10 @@ public class PlayerController : MonoBehaviour
             Jump();
             CheckIfGrounded();
             ApplyCustomGravity();
-            // if (isCheckingDistance && borderCollider != null)
-            // {
-            //     CheckDistanceFromBorder();
-            // }
+            if (isCheckingDistance && borderCollider != null)
+            {
+                CheckDistanceFromBorder();
+            }
         }
         else
         {
@@ -104,61 +102,52 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // void OnTriggerExit2D(Collider2D other)
-    // {
-    //     if (other.CompareTag("Border"))
-    //     {
-    //         borderCollider = other;  
-    //         isCheckingDistance = true;  
-    //     }
-    // }
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("ThresholdBorder"))
+        if (other.CompareTag("Border"))
         {
-            Debug.Log("Player collided with a platform. Game Over triggered.");
-            GameOver();  // Trigger the Game Over sequence
+            borderCollider = other;  
+            isCheckingDistance = true;  
         }
     }
 
+    void CheckDistanceFromBorder()
+    {
+        // Calculate the distance from the player to the specific border
+        float distanceFromBorder = Vector2.Distance(borderCollider.ClosestPoint(transform.position), transform.position);
+        //Debug.Log("Distance from border: " + distanceFromBorder + " Border threshold: " + borderThresholdDistance);
 
-    // void CheckDistanceFromBorder()
-    // {
-    //     // Calculate the distance from the player to the specific border
-    //     float distanceFromBorder = Vector2.Distance(borderCollider.ClosestPoint(transform.position), transform.position);
-    //     //Debug.Log("Distance from border: " + distanceFromBorder + " Border threshold: " + borderThresholdDistance);
+        if (distanceFromBorder > borderThresholdDistance)
+        {
+            isBeyondThreshold = true;
+        }
+        else
+        {
+            isBeyondThreshold = false;  // Reset if the player moves back inside the threshold
+        }
 
-    //     if (distanceFromBorder > borderThresholdDistance)
-    //     {
-    //         isBeyondThreshold = true;
-    //     }
-    //     else
-    //     {
-    //         isBeyondThreshold = false;  // Reset if the player moves back inside the threshold
-    //     }
+        // Check conditions based on the distance and whether the player collected the triangle
+        //if (isBeyondThreshold && PlayerTriangleCollision.collectTriangle)
+        //{
+        //    Time.timeScale = 1f;  // Unfreeze the game
+        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
+        //    isCheckingDistance = false;  // Stop checking distance
+        //}
+        //else if (isBeyondThreshold)
+        //{
+        //    Debug.Log("Game Over triggered. Distance from border: " + distanceFromBorder + " Border threshold: " + borderThresholdDistance);
+        //    GameOver();
+        //    isCheckingDistance = false;  // Stop checking distance
+        //}
 
-    //     // Check conditions based on the distance and whether the player collected the triangle
-    //     //if (isBeyondThreshold && PlayerTriangleCollision.collectTriangle)
-    //     //{
-    //     //    Time.timeScale = 1f;  // Unfreeze the game
-    //     //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Reload the current scene
-    //     //    isCheckingDistance = false;  // Stop checking distance
-    //     //}
-    //     //else if (isBeyondThreshold)
-    //     //{
-    //     //    Debug.Log("Game Over triggered. Distance from border: " + distanceFromBorder + " Border threshold: " + borderThresholdDistance);
-    //     //    GameOver();
-    //     //    isCheckingDistance = false;  // Stop checking distance
-    //     //}
-
-    //     if (isBeyondThreshold)
-    //     {
-    //         LevelRotation.rotationPaused = false;
-    //         PlayerDiamondCollision.ResetDiamondState();
-    //         GameOver();
-    //         isCheckingDistance = false;
-    //     }
-    // }
+        if (isBeyondThreshold)
+        {
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
+            GameOver();
+            isCheckingDistance = false;
+        }
+    }
 
     void GameOver()
     {

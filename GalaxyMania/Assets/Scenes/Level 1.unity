@@ -385,7 +385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &106162555
 Transform:
   m_ObjectHideFlags: 0
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1998799962}
-  goal: {fileID: 1522217767}
+  goal: {fileID: 696361832}
   distanceFromPlayer: 1.5
   rotationSpeed: 50
 --- !u!212 &106436664
@@ -5701,6 +5701,7 @@ MonoBehaviour:
     m_Bits: 256
   jump: 10
   levelParent: {fileID: 936565159}
+  borderThresholdDistance: 300
 --- !u!114 &1998799967
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -178,7 +178,6 @@ public class LevelRotation : MonoBehaviour
         {
             bounds.Encapsulate(renderer.bounds);
         }
-
         return bounds;
     }
 }

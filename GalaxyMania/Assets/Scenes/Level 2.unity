@@ -5206,7 +5206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1998799962}
-  goal: {fileID: 1857078114}
+  goal: {fileID: 696361832}
   distanceFromPlayer: 1.5
   rotationSpeed: 50
 --- !u!212 &1529502229
@@ -6951,6 +6951,7 @@ MonoBehaviour:
     m_Bits: 256
   jump: 10
   levelParent: {fileID: 936565159}
+  borderThresholdDistance: 300
 --- !u!114 &1998799967
 MonoBehaviour:
   m_ObjectHideFlags: 0

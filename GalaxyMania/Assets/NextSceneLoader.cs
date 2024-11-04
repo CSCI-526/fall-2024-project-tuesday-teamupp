@@ -31,8 +31,31 @@ public class NextSceneLoader : MonoBehaviour
         {
             popUp.ShowPopUp(currentSceneName + " Cleared!");
         }
-
-        if (currentSceneName == "Level 1")  // Check if the current scene is Level 1
+        if (currentSceneName == "Tutorial Move")  // Check if the current scene is Level 1
+        {
+            distTracker.sendlevel1();
+            // Load the next level
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
+            SceneManager.LoadScene("Tutorial Jump");
+        }
+        else if (currentSceneName == "Tutorial Jump")  // Check if the current scene is Level 1
+        {
+            distTracker.sendlevel1();
+            // Load the next level
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
+            SceneManager.LoadScene("Tutorial Portal");
+        }
+        else if (currentSceneName == "Tutorial Portal")  // Check if the current scene is Level 1
+        {
+            distTracker.sendlevel1();
+            // Load the next level
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
+            SceneManager.LoadScene("Level 1");
+        }
+        else if (currentSceneName == "Level 1")  // Check if the current scene is Level 1
         {
             distTracker.sendlevel1();
             // Load the next level
@@ -48,5 +71,6 @@ public class NextSceneLoader : MonoBehaviour
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Level 3");
         }
+        
     }
 }
