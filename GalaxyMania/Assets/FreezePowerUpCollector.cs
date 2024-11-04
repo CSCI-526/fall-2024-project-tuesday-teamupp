@@ -9,7 +9,9 @@ public class PlayerDiamondCollision : MonoBehaviour
     void Update()
     {
         // Check if the player presses the "E" key and has collected the diamond
-        if (hasDiamond && Input.GetKeyDown(KeyCode.E))
+
+        //if (hasDiamond && Input.GetKeyDown(KeyCode.E))
+        if (hasDiamond)
         {
             hasDiamond = false;
             Debug.Log("Diamond powerup used!");
@@ -42,8 +44,14 @@ public class PlayerDiamondCollision : MonoBehaviour
             PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
             if (popUp != null)
             {
-                popUp.ShowPopUp("Press E to activate!");
+                popUp.ShowPopUp("Level Rotation is frozen!");
             }
+
+            // PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+            // if (popUp != null)
+            // {
+            //     popUp.ShowPopUp("Press E to activate!");
+            // }
 
             // Notify HUDController to show Freeze UI
             HUDController hudController = FindObjectOfType<HUDController>(); // NEW LINE
