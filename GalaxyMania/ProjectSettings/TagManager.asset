@@ -11,6 +11,7 @@ TagManager:
   - ReferencePoint
   - TeleportSource
   - TeleportTarget
+  - ThresholdBorder
   layers:
   - Default
   - TransparentFX
