@@ -9,13 +9,18 @@ public class StartScreenManager : MonoBehaviour
         SceneManager.LoadScene("Level 1");
     }
 
-    public void QuitGame()
+    public void Tutorial()
     {
-        // Quit the application
-        Application.Quit();
-        // Note: This will not work in the editor; only in a build
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+        SceneManager.LoadScene("Tutorial Move");
     }
+
+    // public void QuitGame()
+    // {
+    //     // Quit the application
+    //     Application.Quit();
+    //     // Note: This will not work in the editor; only in a build
+    //     #if UNITY_EDITOR
+    //     UnityEditor.EditorApplication.isPlaying = false;
+    //     #endif
+    // }
 }
