@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;  // This is required to load scenes
 
@@ -23,14 +24,11 @@ public class NextSceneLoader : MonoBehaviour
         }
     }
 
-    void LoadNextScene()
+    private IEnumerator FreezeAndContinue(string currentSceneName)
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;  // Get the current scene name
-        PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
-        if (popUp != null)
-        {
-            popUp.ShowPopUp(currentSceneName + " Cleared!");
-        }
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(0.75f);
+        Time.timeScale = 1;
         if (currentSceneName == "Tutorial Move")  // Check if the current scene is Level 1
         {
             distTracker.sendlevel1();
@@ -70,6 +68,17 @@ public class NextSceneLoader : MonoBehaviour
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Level 3");
+        }
+    }
+
+    void LoadNextScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;  // Get the current scene name
+        PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
+        if (popUp != null)
+        {
+            popUp.ShowPopUp(currentSceneName + " Cleared!");
+            StartCoroutine(FreezeAndContinue(currentSceneName));
         }
         
     }

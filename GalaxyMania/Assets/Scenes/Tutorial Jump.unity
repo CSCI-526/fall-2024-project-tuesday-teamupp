@@ -2165,6 +2165,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4469015517156059469, guid: 6bba3d9a518b041a49c97b941d8cd909, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7021529466741003334, guid: 6bba3d9a518b041a49c97b941d8cd909, type: 3}
       propertyPath: m_Name
       value: PopUpCanvas
@@ -3255,7 +3259,6 @@ MonoBehaviour:
     m_Bits: 256
   jump: 10
   levelParent: {fileID: 936565159}
-  borderThresholdDistance: 30
 --- !u!114 &1998799967
 MonoBehaviour:
   m_ObjectHideFlags: 0

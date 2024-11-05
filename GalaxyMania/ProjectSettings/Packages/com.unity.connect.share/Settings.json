@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"/Users/arivas/GravityClimb/WebGL Builds/20241021;C:/Users/Ready PLayer 1/Desktop/Builds GalaxyMania;C:/CSCI526/fall-2024-project-tuesday-teamupp/GalaxyMania/WebGL Builds;;;;;;;\"}"
+                "value": "{\"m_Value\":\"/Users/arivas/GravityClimb/WebGL Builds/20241104;/Users/arivas/GravityClimb/WebGL Builds/20241021;C:/Users/Ready PLayer 1/Desktop/Builds GalaxyMania;C:/CSCI526/fall-2024-project-tuesday-teamupp/GalaxyMania/WebGL Builds;;;;;;\"}"
             }
         ]
     }

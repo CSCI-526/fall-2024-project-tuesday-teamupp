@@ -13,7 +13,7 @@ public class JumpMessage : MonoBehaviour
         // Display the message initially
         if (popUp != null)
         {
-            popUp.ShowInfoText("Spacebar"); // Replace with image
+            popUp.ShowPopUp("Spacebar"); // Replace with image
         }
     }
 
