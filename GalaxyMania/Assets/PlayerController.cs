@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 10f;
     public Transform groundCheck;
     public LayerMask groundLayer;
+    public bool isHitByBullet = false;
     //public Transform player;
     public float jump = 20f;
     public Transform levelParent;
@@ -165,7 +166,22 @@ public class PlayerController : MonoBehaviour
         LevelRotation.rotationPaused = false;
         PlayerDiamondCollision.ResetDiamondState();
 
-        // Call the Send method, passing the appropriate values
+        if (isHitByBullet)
+        {
+            Debug.Log("Player died from bullet");
+        } else
+        {
+            Debug.Log("Player died naturally");
+        }
+        isHitByBullet = false;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Bullet"))
+        {
+            isHitByBullet = false;
+        }
     }
 
     public bool IsGameOver()

@@ -61,6 +61,7 @@ public class Bullet : MonoBehaviour
                 if (playerRb != null)
                 {
                     playerRb.AddForce(direction * playerDisplacementForce, ForceMode2D.Impulse);
+                    player.isHitByBullet = true;
                 }
             }
             Destroy(gameObject);
