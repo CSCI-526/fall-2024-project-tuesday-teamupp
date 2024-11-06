@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 113039508}
   - component: {fileID: 113039511}
   m_Layer: 8
-  m_Name: largePlatform (5)
+  m_Name: AutoJumpBottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 156454783}
   - component: {fileID: 156454782}
   m_Layer: 8
-  m_Name: largePlatform (6)
+  m_Name: NormalLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1526,7 +1526,7 @@ GameObject:
   - component: {fileID: 398557041}
   - component: {fileID: 398557040}
   m_Layer: 8
-  m_Name: largePlatform (8)
+  m_Name: Vmoving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1687,7 +1687,7 @@ GameObject:
   - component: {fileID: 473365877}
   - component: {fileID: 473365876}
   m_Layer: 8
-  m_Name: largePlatform (3)
+  m_Name: AntiTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1965,7 +1965,7 @@ GameObject:
   - component: {fileID: 506560739}
   - component: {fileID: 506560738}
   m_Layer: 8
-  m_Name: largePlatform (3)
+  m_Name: Stabilizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2800,7 +2800,7 @@ GameObject:
   - component: {fileID: 716868905}
   - component: {fileID: 716868904}
   m_Layer: 8
-  m_Name: largePlatform (1)
+  m_Name: AntiLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3059,7 +3059,7 @@ GameObject:
   - component: {fileID: 728805413}
   - component: {fileID: 728805412}
   m_Layer: 8
-  m_Name: largePlatform (3)
+  m_Name: NoJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4271,7 +4271,7 @@ GameObject:
   - component: {fileID: 1070094218}
   - component: {fileID: 1070094217}
   m_Layer: 8
-  m_Name: largePlatform (9)
+  m_Name: VmovingL1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4519,7 +4519,7 @@ GameObject:
   - component: {fileID: 1441445807}
   - component: {fileID: 1441445811}
   m_Layer: 8
-  m_Name: largePlatform (6)
+  m_Name: AutoJumpTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4806,7 +4806,7 @@ GameObject:
   - component: {fileID: 1478964406}
   - component: {fileID: 1478964405}
   m_Layer: 8
-  m_Name: largePlatform (2)
+  m_Name: AntiRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5210,7 +5210,7 @@ GameObject:
   - component: {fileID: 1488877861}
   - component: {fileID: 1488877860}
   m_Layer: 8
-  m_Name: largePlatform (7)
+  m_Name: StabilizerL2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5354,7 +5354,7 @@ GameObject:
   - component: {fileID: 1510666367}
   - component: {fileID: 1510666366}
   m_Layer: 8
-  m_Name: largePlatform (9)
+  m_Name: VmovingR1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5696,7 +5696,7 @@ GameObject:
   - component: {fileID: 1555753928}
   - component: {fileID: 1555753927}
   m_Layer: 8
-  m_Name: largePlatform (4)
+  m_Name: StabilizerL1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6101,7 +6101,7 @@ GameObject:
   - component: {fileID: 1641119721}
   - component: {fileID: 1641119720}
   m_Layer: 8
-  m_Name: mediumPlatform (5)
+  m_Name: FlagNormal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6249,6 +6249,7 @@ GameObject:
   - component: {fileID: 1659955504}
   - component: {fileID: 1659955503}
   - component: {fileID: 1659955511}
+  - component: {fileID: 1659955512}
   m_Layer: 7
   m_Name: Person
   m_TagString: Player
@@ -6410,6 +6411,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  isHitByBullet: 0
   jump: 10
   levelParent: {fileID: 688976231}
 --- !u!50 &1659955509
@@ -6501,6 +6503,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30cd60f6554ce20438c0b0e26f566e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  numOfJump: 0
+--- !u!114 &1659955512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659955501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6351fa776b6b9754f83e8f219a2d2260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1661642781
@@ -7112,7 +7128,7 @@ GameObject:
   - component: {fileID: 2056241660}
   - component: {fileID: 2056241659}
   m_Layer: 8
-  m_Name: mediumPlatform (4)
+  m_Name: FlagNormal1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7257,7 +7273,7 @@ GameObject:
   - component: {fileID: 2139848744}
   - component: {fileID: 2139848747}
   m_Layer: 8
-  m_Name: largePlatform (6)
+  m_Name: AutoJumpLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

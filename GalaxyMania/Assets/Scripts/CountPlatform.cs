@@ -18,22 +18,33 @@ public class CountPlatform : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         string platformName = collision.gameObject.name;
-        CheckCombinedPlatform(platformName, currentSceneName, "Floor");
         CheckCombinedPlatform(platformName, currentSceneName, "Stabilizer");
+        CheckSinglePlatform(platformName, currentSceneName, "Normal");
+        CheckSinglePlatform(platformName, currentSceneName, "Anti");
         if (currentSceneName == "Level 1")
         {
+            CheckCombinedPlatform(platformName, currentSceneName, "Floor");
             CheckCombinedPlatform(platformName, currentSceneName, "PlusNormal");
         }
         if (currentSceneName == "Level 2")
         {
+            CheckCombinedPlatform(platformName, currentSceneName, "Floor");
             CheckCombinedPlatform(platformName, currentSceneName, "PlusNormalTop");
             CheckCombinedPlatform(platformName, currentSceneName, "PlusNormalBottom");
             CheckCombinedPlatform(platformName, currentSceneName, "PlusAnti");
             CheckSinglePlatform(platformName, currentSceneName, "Resizing");
             CheckSinglePlatform(platformName, currentSceneName, "Curve");
         }
-        CheckSinglePlatform(platformName, currentSceneName, "Normal");
-        CheckSinglePlatform(platformName, currentSceneName, "Anti");
+        if (currentSceneName == "Level 3")
+        {
+            CheckCombinedPlatform(platformName, currentSceneName, "FloorL");
+            CheckCombinedPlatform(platformName, currentSceneName, "FloorR");
+            CheckCombinedPlatform(platformName, currentSceneName, "FloorMiddle");
+            CheckCombinedPlatform(platformName, currentSceneName, "FlagNormal");
+            CheckCombinedPlatform(platformName, currentSceneName, "Vmoving");
+            CheckSinglePlatform(platformName, currentSceneName, "AutoJump");
+            CheckSinglePlatform(platformName, currentSceneName, "NoJump");
+        }
     }
 
     void CheckCombinedPlatform(string platformName, string currentSceneName, string prefix)
@@ -41,7 +52,7 @@ public class CountPlatform : MonoBehaviour
         if (platformName.StartsWith(prefix) && !levelPlatforms[currentSceneName].ContainsKey(prefix))
         {
             levelPlatforms[currentSceneName][prefix] = true;
-            Debug.Log("Touch the " + prefix);
+            Debug.Log(currentSceneName + " : Touch the " + prefix);
         }
     }
 
@@ -50,7 +61,7 @@ public class CountPlatform : MonoBehaviour
         if (platformName.StartsWith(prefix) && !levelPlatforms[currentSceneName].ContainsKey(platformName))
         {
             levelPlatforms[currentSceneName][platformName] = true;
-            Debug.Log("Touch the " + platformName);
+            Debug.Log(currentSceneName + " : Touch the " + platformName);
         }
     }
     // Update is called once per frame
