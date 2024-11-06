@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     //private Collider2D borderCollider;  
     //private bool isCheckingDistance = false;
     DistTracker distTracker;
+    Send2Google send2Google;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,10 +36,15 @@ public class PlayerController : MonoBehaviour
         gameOverCanvas.SetActive(false);  // Ensure the Game Over screen is hidden at the start
         //GameObject senderObject = GameObject.Find("Person");
         GameObject senderObject = GameObject.Find("DistTracker");
+        GameObject senderGoogle = GameObject.Find("Person");
         // Get the Send2Google component from the GameObject
         if (senderObject != null)
         {
             distTracker = senderObject.GetComponent<DistTracker>();
+        }
+        if (senderGoogle != null)
+        {
+            send2Google = senderGoogle.GetComponent<Send2Google>();
         }
 
         // Get the HUDController instance
@@ -173,6 +179,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Player died naturally");
         }
+        send2Google.SendBulletData(isHitByBullet);
         isHitByBullet = false;
     }
 

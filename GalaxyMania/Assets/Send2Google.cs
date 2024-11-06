@@ -46,6 +46,41 @@ public class Send2Google : MonoBehaviour
         }
     }
 
+    public void SendBulletData(bool isHitByBullet)
+    {
+        StartCoroutine(PostDeathLevel3(sessionID.ToString(), isHitByBullet));
+    }
+
+    private IEnumerator PostDeathLevel3(string sessionID, bool isHitByBullet)
+    {
+        WWWForm form = new WWWForm();
+
+        Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer1}");
+        form.AddField("entry.751077088", sessionID);  // For session ID
+        if (isHitByBullet)
+        {
+            form.AddField("entry.468887209", "Player died from bullet");
+        }
+        else
+        {
+            form.AddField("entry.468887209", "Player died naturally");
+        }
+
+        using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
+    }
+
     private IEnumerator PostTestLevel1(string sessionID, string selectedAnswer1)
     {
         WWWForm form = new WWWForm();
