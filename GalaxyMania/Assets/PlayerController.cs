@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(isGrounded);
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            send2Google.numOfJump += 1;
             rb.velocity = new Vector2(rb.velocity.x, jump);
         }
     }

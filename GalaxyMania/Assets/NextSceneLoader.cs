@@ -5,13 +5,19 @@ using UnityEngine.SceneManagement;  // This is required to load scenes
 public class NextSceneLoader : MonoBehaviour
 {
     DistTracker distTracker;
+    Send2Google send2Google;
     void Start()
     {
         GameObject senderObject = GameObject.Find("DistTracker");
+        GameObject sendGoogleObject = GameObject.Find("Person");
         // Get the Send2Google component from the GameObject
         if (senderObject != null)
         {
             distTracker = senderObject.GetComponent<DistTracker>();
+        }
+        if (sendGoogleObject != null)
+        {
+            send2Google = sendGoogleObject.GetComponent<Send2Google>();
         }
     }
     void OnTriggerEnter2D(Collider2D other)  // Use Collider2D for 2D trigger detection
@@ -56,6 +62,7 @@ public class NextSceneLoader : MonoBehaviour
         else if (currentSceneName == "Level 1")  // Check if the current scene is Level 1
         {
             distTracker.sendlevel1();
+            send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 1");
             // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
@@ -64,6 +71,7 @@ public class NextSceneLoader : MonoBehaviour
         else if (currentSceneName == "Level 2")  // Check if the current scene is Level 1
         {
             distTracker.sendlevel1();
+            send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 2");
             // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();

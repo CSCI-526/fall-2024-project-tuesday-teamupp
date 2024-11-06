@@ -9,11 +9,17 @@ public class WinMessageHandler : MonoBehaviour
     public Color targetColor = new Color(111f / 255f, 41f / 255f, 26f / 255f, 1f); // Set target color
     public float colorTolerance = 0.02f; // Tolerance for color matching
     private bool wonGame = false;
+    Send2Google send2Google;
 
     private void Start()
     {
         // Initially hide the win message
         winText.text = "";
+        GameObject sendGoogleObject = GameObject.Find("Person");
+        if (sendGoogleObject != null)
+        {
+            send2Google = sendGoogleObject.GetComponent<Send2Google>();
+        }
     }
 
     void Update()
@@ -39,6 +45,7 @@ public class WinMessageHandler : MonoBehaviour
             // Check if the object's color matches the target color
             if (IsColorClose(objectColor, targetColor, colorTolerance))
             {
+                send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 3");
                 // Display the win message
                 winText.text = "You Win!";
                 Time.timeScale = 0; // Optionally pause the game

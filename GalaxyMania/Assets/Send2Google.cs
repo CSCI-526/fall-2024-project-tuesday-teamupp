@@ -10,11 +10,14 @@ public class Send2Google : MonoBehaviour
     private string selectedAnswer2;
     private long sessionID;
     private string test_url = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfdYAsohFb9clbZX-PXhy8QWj1zRPOXxT3RQ_YdAkrOrDWgCA/formResponse";
+    public float timer;
+    public int numOfJump = 0;
     //private string portalfinder;
     // Start is called before the first frame update
     void Start()
     {
-
+        timer = 0f;
+        numOfJump = 0;
     }
     private void Awake()
     {
@@ -51,11 +54,41 @@ public class Send2Google : MonoBehaviour
         StartCoroutine(PostDeathLevel3(sessionID.ToString(), isHitByBullet));
     }
 
+    public void SendCompleteLevelData(float timer, int numOfJump, string levelname)
+    {
+        StartCoroutine(PostCompleteLevelData(sessionID.ToString(), timer.ToString(), numOfJump.ToString(), levelname));
+    }
+
+    private IEnumerator PostCompleteLevelData(string sessionID, string timer, string numOfJump, string levelname)
+    {
+        WWWForm form = new WWWForm();
+
+        Debug.Log($"Sending data - SessionID: {sessionID}, time: {timer}, #OfJump: {numOfJump}, levelname: {levelname}");
+        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.343903498", timer);
+        form.AddField("entry.1120816225", numOfJump);
+        form.AddField("entry.1916354037", levelname);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
+    }
+
     private IEnumerator PostDeathLevel3(string sessionID, bool isHitByBullet)
     {
         WWWForm form = new WWWForm();
 
-        Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer1}");
+        //Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer1}");
         form.AddField("entry.751077088", sessionID);  // For session ID
         if (isHitByBullet)
         {
@@ -181,6 +214,6 @@ public class Send2Google : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        timer += Time.deltaTime;
     }
 }
