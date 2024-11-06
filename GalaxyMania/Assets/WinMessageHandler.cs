@@ -45,7 +45,7 @@ public class WinMessageHandler : MonoBehaviour
             // Check if the object's color matches the target color
             if (IsColorClose(objectColor, targetColor, colorTolerance))
             {
-                send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 3");
+                send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 3", CountPlatform.levelPlatforms["Level 3"].Count);
                 // Display the win message
                 winText.text = "You Win!";
                 Time.timeScale = 0; // Optionally pause the game

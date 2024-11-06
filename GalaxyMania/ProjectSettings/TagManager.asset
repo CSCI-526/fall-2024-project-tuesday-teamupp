@@ -12,6 +12,9 @@ TagManager:
   - TeleportSource
   - TeleportTarget
   - ThresholdBorder
+  - Bullet
+  - Floor
+  - Blue
   layers:
   - Default
   - TransparentFX

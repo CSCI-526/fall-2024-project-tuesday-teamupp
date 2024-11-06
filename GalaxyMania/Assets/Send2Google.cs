@@ -54,20 +54,22 @@ public class Send2Google : MonoBehaviour
         StartCoroutine(PostDeathLevel3(sessionID.ToString(), isHitByBullet));
     }
 
-    public void SendCompleteLevelData(float timer, int numOfJump, string levelname)
+
+    public void SendCompleteLevelData(float timer, int numOfJump, string levelname, int NumOfPlatform)
     {
-        StartCoroutine(PostCompleteLevelData(sessionID.ToString(), timer.ToString(), numOfJump.ToString(), levelname));
+        StartCoroutine(PostCompleteLevelData(sessionID.ToString(), timer.ToString(), numOfJump.ToString(), levelname, NumOfPlatform.ToString()));
     }
 
-    private IEnumerator PostCompleteLevelData(string sessionID, string timer, string numOfJump, string levelname)
+    private IEnumerator PostCompleteLevelData(string sessionID, string timer, string numOfJump, string levelname, string NumOfPlatform)
     {
         WWWForm form = new WWWForm();
 
-        Debug.Log($"Sending data - SessionID: {sessionID}, time: {timer}, #OfJump: {numOfJump}, levelname: {levelname}");
+        Debug.Log($"Sending data - SessionID: {sessionID}, time: {timer}, #OfJump: {numOfJump}, levelname: {levelname}, #ofPlatform: {NumOfPlatform}");
         form.AddField("entry.751077088", sessionID);  // For session ID
         form.AddField("entry.343903498", timer);
         form.AddField("entry.1120816225", numOfJump);
         form.AddField("entry.1916354037", levelname);
+        form.AddField("entry.672358194", NumOfPlatform);
 
         using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
         {

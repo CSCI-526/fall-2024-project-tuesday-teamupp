@@ -62,7 +62,7 @@ public class NextSceneLoader : MonoBehaviour
         else if (currentSceneName == "Level 1")  // Check if the current scene is Level 1
         {
             distTracker.sendlevel1();
-            send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 1");
+            send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 1", CountPlatform.levelPlatforms["Level 1"].Count);
             // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
@@ -71,7 +71,7 @@ public class NextSceneLoader : MonoBehaviour
         else if (currentSceneName == "Level 2")  // Check if the current scene is Level 1
         {
             distTracker.sendlevel1();
-            send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 2");
+            send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 2", CountPlatform.levelPlatforms["Level 2"].Count);
             // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
