@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 34335761}
   - component: {fileID: 34335760}
   m_Layer: 8
-  m_Name: largePlatform (4)
+  m_Name: StabilizerL1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1052,7 +1052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7333658582956801730, guid: 99accc5223a2546748c06b34b66912bf, type: 3}
       propertyPath: m_Name
-      value: CurvedPlatform
+      value: CurvedRight
       objectReference: {fileID: 0}
     - target: {fileID: 7333658582956801730, guid: 99accc5223a2546748c06b34b66912bf, type: 3}
       propertyPath: m_Layer
@@ -1146,7 +1146,7 @@ GameObject:
   - component: {fileID: 463767711}
   - component: {fileID: 463767710}
   m_Layer: 8
-  m_Name: largePlatform (2)
+  m_Name: AntiTopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1496,7 +1496,7 @@ GameObject:
   - component: {fileID: 498400508}
   - component: {fileID: 498400507}
   m_Layer: 8
-  m_Name: mediumPlatform (9)
+  m_Name: PlusAnti2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1627,7 +1627,7 @@ GameObject:
   - component: {fileID: 502536060}
   - component: {fileID: 502536062}
   m_Layer: 8
-  m_Name: largePlatform (1)
+  m_Name: AntiMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1943,7 +1943,7 @@ GameObject:
   - component: {fileID: 552001058}
   - component: {fileID: 552001057}
   m_Layer: 8
-  m_Name: mediumPlatform (10)
+  m_Name: PlusAnti1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2378,7 +2378,7 @@ GameObject:
   - component: {fileID: 736285110}
   - component: {fileID: 736285109}
   m_Layer: 8
-  m_Name: largePlatform (3)
+  m_Name: Stabilizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2866,7 +2866,7 @@ GameObject:
   - component: {fileID: 867462325}
   - component: {fileID: 867462324}
   m_Layer: 8
-  m_Name: largePlatform (9)
+  m_Name: NormalTopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3211,7 +3211,7 @@ GameObject:
   - component: {fileID: 917954071}
   - component: {fileID: 917954070}
   m_Layer: 8
-  m_Name: mediumPlatform (5)
+  m_Name: PlusNormalTop2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3342,7 +3342,7 @@ GameObject:
   - component: {fileID: 936077286}
   - component: {fileID: 936077285}
   m_Layer: 8
-  m_Name: largePlatform (4)
+  m_Name: NormalTiltMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3845,7 +3845,7 @@ GameObject:
   - component: {fileID: 1075371621}
   - component: {fileID: 1075371620}
   m_Layer: 8
-  m_Name: mediumPlatform (12)
+  m_Name: PlusNormalBottom2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4021,7 +4021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7088737771325427990, guid: 11e7833fa4b2d55419a2b7974b3789d7, type: 3}
       propertyPath: m_Name
-      value: ResizingPlatform (1)
+      value: ResizingBottomRight
       objectReference: {fileID: 0}
     - target: {fileID: 7088737771325427990, guid: 11e7833fa4b2d55419a2b7974b3789d7, type: 3}
       propertyPath: m_Layer
@@ -4048,7 +4048,7 @@ GameObject:
   - component: {fileID: 1100975446}
   - component: {fileID: 1100975445}
   m_Layer: 8
-  m_Name: largePlatform (5)
+  m_Name: StabilizerR1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4581,7 +4581,7 @@ GameObject:
   - component: {fileID: 1248659503}
   - component: {fileID: 1248659502}
   m_Layer: 8
-  m_Name: mediumPlatform (3)
+  m_Name: PlusNormalTop1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5001,7 +5001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7088737771325427990, guid: 11e7833fa4b2d55419a2b7974b3789d7, type: 3}
       propertyPath: m_Name
-      value: ResizingPlatform (2)
+      value: ResizingLeft
       objectReference: {fileID: 0}
     - target: {fileID: 7088737771325427990, guid: 11e7833fa4b2d55419a2b7974b3789d7, type: 3}
       propertyPath: m_Layer
@@ -5025,7 +5025,7 @@ GameObject:
   - component: {fileID: 1522369721}
   - component: {fileID: 1522369720}
   m_Layer: 8
-  m_Name: largePlatform (1)
+  m_Name: NormalBottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5340,7 +5340,7 @@ GameObject:
   - component: {fileID: 1604273950}
   - component: {fileID: 1604273949}
   m_Layer: 8
-  m_Name: mediumPlatform (6)
+  m_Name: NormalTiltTopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6345,7 +6345,7 @@ GameObject:
   - component: {fileID: 1886893142}
   - component: {fileID: 1886893141}
   m_Layer: 8
-  m_Name: largePlatform (6)
+  m_Name: NormalTiltLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6674,7 +6674,7 @@ GameObject:
   - component: {fileID: 1979128897}
   - component: {fileID: 1979128896}
   m_Layer: 8
-  m_Name: largePlatform (3)
+  m_Name: NormalBottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6826,6 +6826,7 @@ GameObject:
   - component: {fileID: 1998799971}
   - component: {fileID: 1998799973}
   - component: {fileID: 1998799974}
+  - component: {fileID: 1998799975}
   m_Layer: 0
   m_Name: Person
   m_TagString: Player
@@ -6949,9 +6950,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  isHitByBullet: 0
   jump: 10
   levelParent: {fileID: 936565159}
-  borderThresholdDistance: 300
 --- !u!114 &1998799967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7047,6 +7048,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30cd60f6554ce20438c0b0e26f566e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  numOfJump: 0
+--- !u!114 &1998799975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998799961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6351fa776b6b9754f83e8f219a2d2260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &2000984385 stripped
@@ -7207,7 +7222,7 @@ GameObject:
   - component: {fileID: 2102408746}
   - component: {fileID: 2102408745}
   m_Layer: 8
-  m_Name: mediumPlatform (11)
+  m_Name: PlusNormalBottom1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7385,7 +7400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7333658582956801730, guid: 99accc5223a2546748c06b34b66912bf, type: 3}
       propertyPath: m_Name
-      value: CurvedPlatofrm
+      value: CurvedPowerup
       objectReference: {fileID: 0}
     - target: {fileID: 7333658582956801730, guid: 99accc5223a2546748c06b34b66912bf, type: 3}
       propertyPath: m_Layer
@@ -7551,7 +7566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7088737771325427990, guid: 11e7833fa4b2d55419a2b7974b3789d7, type: 3}
       propertyPath: m_Name
-      value: ResizingPlatform
+      value: ResizingTopRight
       objectReference: {fileID: 0}
     - target: {fileID: 7088737771325427990, guid: 11e7833fa4b2d55419a2b7974b3789d7, type: 3}
       propertyPath: m_Layer

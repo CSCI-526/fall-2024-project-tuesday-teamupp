@@ -20,7 +20,18 @@ public class CountPlatform : MonoBehaviour
         string platformName = collision.gameObject.name;
         CheckCombinedPlatform(platformName, currentSceneName, "Floor");
         CheckCombinedPlatform(platformName, currentSceneName, "Stabilizer");
-        CheckCombinedPlatform(platformName, currentSceneName, "PlusNormal");
+        if (currentSceneName == "Level 1")
+        {
+            CheckCombinedPlatform(platformName, currentSceneName, "PlusNormal");
+        }
+        if (currentSceneName == "Level 2")
+        {
+            CheckCombinedPlatform(platformName, currentSceneName, "PlusNormalTop");
+            CheckCombinedPlatform(platformName, currentSceneName, "PlusNormalBottom");
+            CheckCombinedPlatform(platformName, currentSceneName, "PlusAnti");
+            CheckSinglePlatform(platformName, currentSceneName, "Resizing");
+            CheckSinglePlatform(platformName, currentSceneName, "Curve");
+        }
         CheckSinglePlatform(platformName, currentSceneName, "Normal");
         CheckSinglePlatform(platformName, currentSceneName, "Anti");
     }
