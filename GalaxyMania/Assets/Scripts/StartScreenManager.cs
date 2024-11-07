@@ -6,7 +6,7 @@ public class StartScreenManager : MonoBehaviour
     public void StartGame()
     {
         // Load the game scene (replace "GameScene" with your actual scene name)
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Level Screen");
     }
 
     public void Tutorial()
