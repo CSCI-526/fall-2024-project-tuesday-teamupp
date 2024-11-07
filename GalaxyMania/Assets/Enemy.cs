@@ -36,7 +36,6 @@ public class Enemy : MonoBehaviour
             bullet.transform.SetParent(transform.parent);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = direction * bulletSpeed;
-
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             if (bulletScript == null)
             {

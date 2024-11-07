@@ -12,6 +12,7 @@ public class CountPlatform : MonoBehaviour
         levelPlatforms["Level 1"] = new Dictionary<string, bool>();
         levelPlatforms["Level 2"] = new Dictionary<string, bool>();
         levelPlatforms["Level 3"] = new Dictionary<string, bool>();
+        levelPlatforms["Level 4"] = new Dictionary<string, bool>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -44,6 +45,17 @@ public class CountPlatform : MonoBehaviour
             CheckCombinedPlatform(platformName, currentSceneName, "Vmoving");
             CheckSinglePlatform(platformName, currentSceneName, "AutoJump");
             CheckSinglePlatform(platformName, currentSceneName, "NoJump");
+        }
+        if (currentSceneName == "Level 4")
+        {
+            CheckCombinedPlatform(platformName, currentSceneName, "FloorL");
+            CheckCombinedPlatform(platformName, currentSceneName, "FloorR");
+            CheckCombinedPlatform(platformName, currentSceneName, "FloorMiddle");
+            CheckCombinedPlatform(platformName, currentSceneName, "FlagNormal");
+            CheckCombinedPlatform(platformName, currentSceneName, "Vmoving");
+            CheckSinglePlatform(platformName, currentSceneName, "AutoJump");
+            CheckSinglePlatform(platformName, currentSceneName, "NoJump");
+            CheckSinglePlatform(platformName, currentSceneName, "SafeWall");
         }
     }
 
