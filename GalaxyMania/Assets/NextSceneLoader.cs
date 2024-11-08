@@ -75,6 +75,10 @@ public class NextSceneLoader : MonoBehaviour
             // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
+            if (PlayerDiamondCollision.counter == false)
+            {
+                send2Google.SendFreeze("No");
+            }
             SceneManager.LoadScene("Level 3");
         }
     }

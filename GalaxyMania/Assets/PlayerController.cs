@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
     public bool isHitByBullet = false;
+    public bool shieldPicked = false;
     //public Transform player;
     public float jump = 20f;
     public Transform levelParent;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     //private bool isCheckingDistance = false;
     DistTracker distTracker;
     Send2Google send2Google;
+    private Shield shield;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
         // Get the HUDController instance
         hudController = FindObjectOfType<HUDController>();
+        shield = FindObjectOfType<Shield>();
 
         // Instantiate the HUD if needed and assign HUDController
         GameObject hudPrefab = Resources.Load<GameObject>("HUDCanvas");
@@ -185,6 +188,21 @@ public class PlayerController : MonoBehaviour
             send2Google.SendBulletData(isHitByBullet);
         }
         isHitByBullet = false;
+
+        if (currentSceneName == "Level 3" && IsShieldActive()==false)
+        {
+            shieldPicked = false;
+            send2Google.SendShield(shieldPicked);
+        }
+
+        if (currentSceneName == "Level 2" )
+        {
+            if(PlayerDiamondCollision.counter == false)
+            {
+                send2Google.SendFreeze("No");
+            }
+            
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -237,6 +255,8 @@ public class PlayerController : MonoBehaviour
         shieldActive = isActive;
         if (isActive)
         {
+            shieldPicked = true;
+            send2Google.SendShield(shieldPicked);
             StartCoroutine(ShieldTimer());
 
             // Notify HUDController to update shield UI
