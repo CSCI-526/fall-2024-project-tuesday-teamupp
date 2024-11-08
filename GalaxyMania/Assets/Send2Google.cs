@@ -25,18 +25,6 @@ public class Send2Google : MonoBehaviour
         sessionID = DateTime.Now.Ticks;
     }
 
-    //public void Send(string selectedAnswer1, string selectedAnswer2)
-    //{
-    //    if (!string.IsNullOrEmpty(selectedAnswer1))
-    //    {
-    //        StartCoroutine(PostLevel1(sessionID.ToString(), selectedAnswer1));
-    //    }
-    //    if (!string.IsNullOrEmpty(selectedAnswer2))
-    //    {
-    //        StartCoroutine(PostLevel2(sessionID.ToString(), selectedAnswer2));
-    //    }
-    //}
-
     public void SendTest(string selectedAnswer1, string selectedAnswer2)
     {
         if (!string.IsNullOrEmpty(selectedAnswer1))
@@ -49,6 +37,16 @@ public class Send2Google : MonoBehaviour
         }
     }
 
+    public void SendShield(bool shield)
+    {
+        StartCoroutine(PostShield(sessionID.ToString(), shield));
+    }
+
+    public void SendFreeze(string freeze)
+    {
+        StartCoroutine(PostFreeze(sessionID.ToString(), freeze));
+    }
+
     public void SendBulletData(bool isHitByBullet)
     {
         StartCoroutine(PostDeathLevel3(sessionID.ToString(), isHitByBullet));
@@ -58,6 +56,58 @@ public class Send2Google : MonoBehaviour
     public void SendCompleteLevelData(float timer, int numOfJump, string levelname, int NumOfPlatform)
     {
         StartCoroutine(PostCompleteLevelData(sessionID.ToString(), timer.ToString(), numOfJump.ToString(), levelname, NumOfPlatform.ToString()));
+    }
+
+    private IEnumerator PostShield(string sessionID, bool shield)
+    {
+        WWWForm form = new WWWForm();
+
+        Debug.Log($"Sending data - SessionID: {sessionID}, Collected shield in Level 3: {shield}");
+        form.AddField("entry.751077088", sessionID);  // For session ID
+        if (shield)
+        {
+            form.AddField("entry.554968727", "Yes");
+        }
+        else
+        {
+            form.AddField("entry.554968727", "No");
+        }
+            using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
+    }
+
+    private IEnumerator PostFreeze(string sessionID, string freeze)
+    {
+        WWWForm form = new WWWForm();
+
+        Debug.Log($"Sending data - SessionID: {sessionID}, Collected freeze in Level 2: {freeze}");
+        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.209725520", freeze);
+        
+        using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
     }
 
     private IEnumerator PostCompleteLevelData(string sessionID, string timer, string numOfJump, string levelname, string NumOfPlatform)
@@ -161,58 +211,8 @@ public class Send2Google : MonoBehaviour
             }
         }
     }
-    //public void Send(bool getsavelevel2, bool getsavelevel3)
-    //{
-    //    StartCoroutine(Post(sessionID.ToString(), getsavelevel2.ToString(), getsavelevel3.ToString()));
-    //}
-
-
-    //private IEnumerator PostLevel1(string sessionID, string selectedAnswer1)
-    //{
-    //    WWWForm form = new WWWForm();
-
-    //    Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer1}");
-    //    form.AddField("entry.995215545", sessionID);  // For session ID
-    //    form.AddField("entry.402189590", selectedAnswer1); 
     
-    //    using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
-    //    {
-    //        yield return www.SendWebRequest();
-
-    //        if (www.result != UnityWebRequest.Result.Success)
-    //        {
-    //            Debug.Log(www.error);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("Form upload complete!");
-    //        }
-    //    }
-    //}
-
-    //private IEnumerator PostLevel2(string sessionID, string selectedAnswer2)
-    //{
-    //    WWWForm form = new WWWForm();
-
-    //    Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer2}");
-    //    form.AddField("entry.995215545", sessionID);  // For session ID
-    //    form.AddField("entry.2136440181", selectedAnswer2); 
-
-    //    using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
-    //    {
-    //        yield return www.SendWebRequest();
-
-    //        if (www.result != UnityWebRequest.Result.Success)
-    //        {
-    //            Debug.Log(www.error);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("Form upload complete!");
-    //        }
-    //    }
-    //}
-
+    
     // Update is called once per frame
     void Update()
     {

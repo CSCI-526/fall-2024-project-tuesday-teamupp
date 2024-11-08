@@ -15,8 +15,6 @@ public class DistTracker : MonoBehaviour
     private float timer;
     private bool conditionMet;
     private bool hasBeenNearPortal = false;
-    //private bool portalTracker = false;
-    //private bool flagTracker = false;
     private bool reachflag = false;
     private bool check2flagand2portal = false;
     //private bool newScene = false;
@@ -34,12 +32,6 @@ public class DistTracker : MonoBehaviour
         {
             send2Google = senderObject.GetComponent<Send2Google>();
         }
-
-        //GameObject player = GameObject.Find("Person");
-        //if (player != null)
-        //{
-        //    playerController = player.GetComponent<PlayerController>();
-        //}
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
