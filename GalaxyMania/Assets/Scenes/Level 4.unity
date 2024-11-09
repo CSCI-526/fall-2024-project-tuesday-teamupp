@@ -4622,6 +4622,7 @@ GameObject:
   - component: {fileID: 1011102337}
   - component: {fileID: 1011102336}
   - component: {fileID: 1011102335}
+  - component: {fileID: 1011102338}
   m_Layer: 8
   m_Name: NormalBottom (1)
   m_TagString: Untagged
@@ -4748,7 +4749,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.23028658, g: 0.7075472, b: 0.3479683, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.92549026, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4758,6 +4759,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1011102338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011102333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88363ff8bc87f0841ae0d46b3f478799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vibrateDuration: 2
+  vibrateMagnitude: 0.24
+  disappearDuration: 2
 --- !u!1 &1030058617
 GameObject:
   m_ObjectHideFlags: 0
@@ -6110,6 +6126,7 @@ GameObject:
   - component: {fileID: 1242220132}
   - component: {fileID: 1242220131}
   - component: {fileID: 1242220130}
+  - component: {fileID: 1242220133}
   m_Layer: 8
   m_Name: NormalBottom (3)
   m_TagString: Untagged
@@ -6236,7 +6253,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.23028658, g: 0.7075472, b: 0.3479683, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.9239893, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6246,6 +6263,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1242220133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242220128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88363ff8bc87f0841ae0d46b3f478799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vibrateDuration: 2
+  vibrateMagnitude: 0.24
+  disappearDuration: 2
 --- !u!1 &1243456748
 GameObject:
   m_ObjectHideFlags: 0
@@ -9634,6 +9666,7 @@ MonoBehaviour:
   shieldPicked: 0
   jump: 10
   levelParent: {fileID: 936565159}
+  scounter: 0
 --- !u!114 &1998799967
 MonoBehaviour:
   m_ObjectHideFlags: 0
