@@ -32,9 +32,10 @@ public class HUDController : MonoBehaviour
         freezeCanvasGroup = freezeUI.GetComponent<CanvasGroup>();
         shieldCanvasGroup = shieldUI.GetComponent<CanvasGroup>();
 
-        // Set initial opacity to 40% (0.4)
-        SetOpacity(freezeCanvasGroup, 0.4f);
-        SetOpacity(shieldCanvasGroup, 0.4f);
+        // Graying out icons and setting opacity to 10% at startup
+        SetInactiveAppearance(freezeCanvasGroup, freezeUI);
+        SetInactiveAppearance(shieldCanvasGroup, shieldUI);
+
 
         currentSceneName = SceneManager.GetActiveScene().name;
         AssignReferences();
@@ -121,6 +122,17 @@ public class HUDController : MonoBehaviour
         var freezeText = freezeUI.GetComponentInChildren<TextMeshProUGUI>();
         freezeText.text = "Freeze";
         StartCoroutine(FadeOpacity(freezeCanvasGroup, 1f));
+
+        var freezeIcon = freezeUI.GetComponentInChildren<UnityEngine.UI.Image>();
+        if (freezeIcon != null)
+        {
+            freezeIcon.color = Color.green;  // Set Freeze icon to green upon collection
+            Debug.Log("Freeze power-up collected: Icon color set to green.");
+        }
+        else
+        {
+            Debug.LogError("Freeze icon image component not found!");
+        }
     }
 
     // Coroutine to handle the color change of AngleText for the duration of the Freeze power-up
@@ -142,6 +154,12 @@ public class HUDController : MonoBehaviour
         freezeTimer = 10f;  // Reset the freeze timer
         freezeActive = true;  // Mark Freeze as active
 
+        var iconImage = freezeUI.GetComponentInChildren<UnityEngine.UI.Image>();
+        if (iconImage != null)
+        {
+            iconImage.color = Color.green;  // Set Freeze icon to green
+        }
+
         StartCoroutine(HandleFreezeEffect());
     }
 
@@ -149,6 +167,16 @@ public class HUDController : MonoBehaviour
     void SetOpacity(CanvasGroup canvasGroup, float opacity)
     {
         canvasGroup.alpha = opacity;
+    }
+
+    void SetInactiveAppearance(CanvasGroup canvasGroup, GameObject uiElement)
+    {
+        SetOpacity(canvasGroup, 0.1f);
+        var iconImage = uiElement.GetComponentInChildren<UnityEngine.UI.Image>();
+        if (iconImage != null)
+        {
+            iconImage.color = Color.grey;
+        }
     }
 
     // Coroutine to fade opacity from current value to the target value
@@ -188,6 +216,13 @@ public class HUDController : MonoBehaviour
 
             var freezeText = freezeUI.GetComponentInChildren<TextMeshProUGUI>();
             freezeText.text = "Freeze";  // Change text back to "Freeze"
+
+            var freezeIcon = freezeUI.GetComponentInChildren<UnityEngine.UI.Image>();
+            if (freezeIcon != null)
+            {
+                freezeIcon.color = Color.grey;
+            }
+            
         }
         else
         {
@@ -204,6 +239,12 @@ public class HUDController : MonoBehaviour
         var shieldText = shieldUI.GetComponentInChildren<TextMeshProUGUI>();
         shieldText.text = "Shield: " + shieldTimer + "s";
         SetOpacity(shieldCanvasGroup, 1.0f);  // Set full opacity
+
+        var iconImage = shieldUI.GetComponentInChildren<UnityEngine.UI.Image>();
+        if (iconImage != null)
+        {
+            iconImage.color = Color.blue;  // Set Shield icon to blue // CHANGE #3
+        }
 
         // After 10 seconds, fade back to 40% opacity
         StartCoroutine(FadeBackAfterTime(shieldCanvasGroup, shieldText, "Shield", 10f));
