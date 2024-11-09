@@ -47,6 +47,11 @@ public class Send2Google : MonoBehaviour
         StartCoroutine(PostFreeze(sessionID.ToString(), freeze));
     }
 
+    public void SendPU(string power)
+    {
+        StartCoroutine(PostPU(sessionID.ToString(), power));
+    }
+
     public void SendBulletData(bool isHitByBullet)
     {
         StartCoroutine(PostDeathLevel3(sessionID.ToString(), isHitByBullet));
@@ -94,6 +99,29 @@ public class Send2Google : MonoBehaviour
         Debug.Log($"Sending data - SessionID: {sessionID}, Collected freeze in Level 2: {freeze}");
         form.AddField("entry.751077088", sessionID);  // For session ID
         form.AddField("entry.209725520", freeze);
+        
+        using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
+    }
+
+    private IEnumerator PostPU(string sessionID, string power)
+    {
+        WWWForm form = new WWWForm();
+
+        Debug.Log($"Sending data - SessionID: {sessionID}, Power-Ups collected in Level 4: {power}");
+        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.1660044848", power);
         
         using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
         {

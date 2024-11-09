@@ -1,31 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class PlayerDiamondCollision : MonoBehaviour
 {
     public static bool hasDiamond = false; // Tracks if the player has collected the diamond
     public string freezePicked;
     public static bool counter = false;
+    public static bool fcounter = false;
     Send2Google send2Google;
+    Shield shield;
 
     void Start()
     {
         GameObject senderObject = GameObject.Find("Person");
+        shield = FindObjectOfType<Shield>();
         // Get the Send2Google component from the GameObject
         if (senderObject != null)
         {
             send2Google = senderObject.GetComponent<Send2Google>();
         }
-        //SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
 
     void Update()
     {
         // Check if the player presses the "E" key and has collected the diamond
-        //string currentLevelName = GetCurrentLevelName();
+        
         if (hasDiamond && Input.GetKeyDown(KeyCode.E))
         {
             hasDiamond = false;
@@ -59,27 +62,35 @@ public class PlayerDiamondCollision : MonoBehaviour
         //}
     }
 
-    //public string GetCurrentLevelName()
-    //{
-    //    return SceneManager.GetActiveScene().name;
-    //}
-    //void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    string currentLevelName = GetCurrentLevelName();
+    public string GetCurrentLevelName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string currentLevelName = GetCurrentLevelName();
 
-    //}
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Check if the object we collided with is the diamond
+        string currentLevelName = GetCurrentLevelName();
         if (collision.collider.CompareTag("Diamond"))
         {
             Debug.Log("Diamond collected!");
             Destroy(collision.gameObject); // Remove the diamond from the scene
             hasDiamond = true; // Player has now collected the diamond
             counter = true;
-            send2Google.SendFreeze("Yes");
+            if (currentLevelName == "Level 2")
+            {
+                send2Google.SendFreeze("Yes");
+            }
+            else if (currentLevelName == "Level 4")
+            {
+                fcounter = true;
+            }
 
             PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
             if (popUp != null)

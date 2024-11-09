@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float jump = 20f;
     public Transform levelParent;
     private bool isGameOver = false; // Track if the game is over
+    public bool scounter = false;
     //private bool isBeyondThreshold = false;
     private HUDController hudController;
     //public float borderThresholdDistance = 300f;
@@ -203,6 +204,25 @@ public class PlayerController : MonoBehaviour
             }
             
         }
+        if (currentSceneName == "Level 4")
+        {
+            if (PlayerDiamondCollision.fcounter == true && scounter == true)
+            {
+                send2Google.SendPU("Both");
+            }
+            else if (PlayerDiamondCollision.fcounter == true && scounter == false)
+            {
+                send2Google.SendPU("Freeze Rotation");
+            }
+            else if (PlayerDiamondCollision.fcounter == false && scounter == true)
+            {
+                send2Google.SendPU("Shield");
+            }
+            else
+            {
+                send2Google.SendPU("None");
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -253,10 +273,19 @@ public class PlayerController : MonoBehaviour
     public void SetShieldActive(bool isActive)
     {
         shieldActive = isActive;
+        string currentSceneName = SceneManager.GetActiveScene().name;
         if (isActive)
         {
-            shieldPicked = true;
-            send2Google.SendShield(shieldPicked);
+            if (currentSceneName == "Level 2")
+            {
+                shieldPicked = true;
+                send2Google.SendShield(shieldPicked);
+            }
+            else if (currentSceneName == "Level 4")
+            {
+                scounter = true;
+            }
+
             StartCoroutine(ShieldTimer());
 
             // Notify HUDController to update shield UI

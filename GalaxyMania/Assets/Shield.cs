@@ -5,7 +5,7 @@ public class Shield : MonoBehaviour
 {
     private PlayerController playerController;
     Send2Google send2Google;
-    //public bool shieldPicked = false;
+    //public static bool scounter = false;
 
     private void Start()
     {
