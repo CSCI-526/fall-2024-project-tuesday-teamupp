@@ -32,6 +32,7 @@ public class NextSceneLoader : MonoBehaviour
 
     private IEnumerator FreezeAndContinue(string currentSceneName)
     {
+        Debug.Log("freeze and continue");
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(0.75f);
         Time.timeScale = 1;
@@ -76,7 +77,7 @@ public class NextSceneLoader : MonoBehaviour
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Level 2");
         }
-        else if (currentSceneName == "Level 2")  // Check if the current scene is Level 1
+        else if (currentSceneName == "Level 2")  // Check if the current scene is Level 2
         {
             distTracker.sendlevel1();
             send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 2", CountPlatform.levelPlatforms["Level 2"].Count);
@@ -88,6 +89,19 @@ public class NextSceneLoader : MonoBehaviour
                 send2Google.SendFreeze("No");
             }
             SceneManager.LoadScene("Level 3");
+        }
+        else if (currentSceneName == "Level 3")  // Check if the current scene is Level 3
+        {
+            //distTracker.sendlevel1();
+            send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 3", CountPlatform.levelPlatforms["Level 3"].Count);
+            // Load the next level
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
+            if (PlayerDiamondCollision.counter == false)
+            {
+                send2Google.SendFreeze("No");
+            }
+            SceneManager.LoadScene("Level 4");
         }
     }
 
