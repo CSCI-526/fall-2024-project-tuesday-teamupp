@@ -2452,7 +2452,7 @@ GameObject:
   - component: {fileID: 936565159}
   m_Layer: 0
   m_Name: Tutorial Move
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4230,8 +4230,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   isHitByBullet: 0
+  shieldPicked: 0
   jump: 10
   levelParent: {fileID: 936565159}
+  scounter: 0
 --- !u!114 &1998799967
 MonoBehaviour:
   m_ObjectHideFlags: 0

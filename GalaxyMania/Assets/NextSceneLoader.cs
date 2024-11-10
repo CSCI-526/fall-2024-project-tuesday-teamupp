@@ -57,6 +57,14 @@ public class NextSceneLoader : MonoBehaviour
             // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
+            SceneManager.LoadScene("Tutorial Enemy");
+        }
+        else if (currentSceneName == "Tutorial Enemy")  // Check if the current scene is Level 1
+        {
+            distTracker.sendlevel1();
+            // Load the next level
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Level 1");
         }
         else if (currentSceneName == "Level 1")  // Check if the current scene is Level 1
