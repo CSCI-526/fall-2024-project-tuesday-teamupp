@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Send2Google : MonoBehaviour
 {
@@ -52,9 +53,9 @@ public class Send2Google : MonoBehaviour
         StartCoroutine(PostPU(sessionID.ToString(), power));
     }
 
-    public void SendBulletData(bool isHitByBullet)
+    public void SendBulletData(bool isHitByBullet, string level)
     {
-        StartCoroutine(PostDeathLevel3(sessionID.ToString(), isHitByBullet));
+        StartCoroutine(PostDeathLevel34(sessionID.ToString(), isHitByBullet, level));
     }
 
 
@@ -164,7 +165,7 @@ public class Send2Google : MonoBehaviour
         }
     }
 
-    private IEnumerator PostDeathLevel3(string sessionID, bool isHitByBullet)
+    private IEnumerator PostDeathLevel34(string sessionID, bool isHitByBullet, string level)
     {
         WWWForm form = new WWWForm();
 
@@ -172,12 +173,27 @@ public class Send2Google : MonoBehaviour
         form.AddField("entry.751077088", sessionID);  // For session ID
         if (isHitByBullet)
         {
-            form.AddField("entry.468887209", "Player died from bullet");
+            if (level == "Level 3")
+            {
+                form.AddField("entry.468887209", "Player died from bullet");
+            }
+            else
+            {
+                form.AddField("entry.1791812891", "Player died from bullet");
+            }
         }
         else
         {
-            form.AddField("entry.468887209", "Player died naturally");
+            if (level == "Level 3")
+            {
+                form.AddField("entry.468887209", "Player died naturally");
+            }
+            else
+            {
+                form.AddField("entry.1791812891", "Player died naturally");
+            }
         }
+                
 
         using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
         {

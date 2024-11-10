@@ -184,9 +184,9 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Player died naturally");
         }
-        if (currentSceneName == "Level 3")
+        if (currentSceneName == "Level 3" || currentSceneName == "Level 4")
         {
-            send2Google.SendBulletData(isHitByBullet);
+            send2Google.SendBulletData(isHitByBullet, currentSceneName);
         }
         isHitByBullet = false;
 
