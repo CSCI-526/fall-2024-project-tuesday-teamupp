@@ -28,12 +28,19 @@ public class PlayerDiamondCollision : MonoBehaviour
     void Update()
     {
         // Check if the player presses the "E" key and has collected the diamond
-        
+        string currentLevelName = GetCurrentLevelName();
         if (hasDiamond && Input.GetKeyDown(KeyCode.E))
         {
             hasDiamond = false;
             Debug.Log("Diamond powerup used!");
-
+            if (currentLevelName == "Level 2")
+            {
+                send2Google.SendFreeze("Yes");
+            }
+            else if (currentLevelName == "Level 4")
+            {
+                fcounter = true;
+            }
             // Call the coroutine to pause the rotation for 10 seconds
             StartCoroutine(FindObjectOfType<LevelRotation>().PauseRotationForSeconds(10f));
 
@@ -76,21 +83,21 @@ public class PlayerDiamondCollision : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Check if the object we collided with is the diamond
-        string currentLevelName = GetCurrentLevelName();
+        //string currentLevelName = GetCurrentLevelName();
         if (collision.collider.CompareTag("Diamond"))
         {
             Debug.Log("Diamond collected!");
             Destroy(collision.gameObject); // Remove the diamond from the scene
             hasDiamond = true; // Player has now collected the diamond
             counter = true;
-            if (currentLevelName == "Level 2")
-            {
-                send2Google.SendFreeze("Yes");
-            }
-            else if (currentLevelName == "Level 4")
-            {
-                fcounter = true;
-            }
+            //if (currentLevelName == "Level 2")
+            //{
+            //    send2Google.SendFreeze("Yes");
+            //}
+            //else if (currentLevelName == "Level 4")
+            //{
+            //    fcounter = true;
+            //}
 
             PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
             if (popUp != null)

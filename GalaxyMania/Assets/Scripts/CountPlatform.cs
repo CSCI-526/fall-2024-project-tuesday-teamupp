@@ -51,11 +51,16 @@ public class CountPlatform : MonoBehaviour
             CheckCombinedPlatform(platformName, currentSceneName, "FloorL");
             CheckCombinedPlatform(platformName, currentSceneName, "FloorR");
             CheckCombinedPlatform(platformName, currentSceneName, "FloorMiddle");
+            CheckCombinedPlatform(platformName, currentSceneName, "PortalNormal");
+            CheckCombinedPlatform(platformName, currentSceneName, "FlagAutoJump");
             CheckCombinedPlatform(platformName, currentSceneName, "FlagNormal");
             CheckCombinedPlatform(platformName, currentSceneName, "Vmoving");
             CheckSinglePlatform(platformName, currentSceneName, "AutoJump");
             CheckSinglePlatform(platformName, currentSceneName, "NoJump");
             CheckSinglePlatform(platformName, currentSceneName, "SafeWall");
+            CheckSinglePlatform(platformName, currentSceneName, "CircularRotatePlatform");
+            CheckSinglePlatform(platformName, currentSceneName, "Resizing");
+            CheckSinglePlatform(platformName, currentSceneName, "Curve");
         }
     }
 

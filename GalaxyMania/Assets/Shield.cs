@@ -22,6 +22,7 @@ public class Shield : MonoBehaviour
     // Detect player collision with the power-up
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
 
         if (other.CompareTag("Player") && !playerController.IsShieldActive())  // Activate only if the shield isn't already active
@@ -30,10 +31,10 @@ public class Shield : MonoBehaviour
             //shieldPicked = true; 
             //send2Google.SendShield(shieldPicked);
             Destroy(gameObject);  // Destroy the shield power-up after collection
-        }
-        if (popUp != null)
-        {
-            popUp.ShowPopUp("Shield Activated!");
+            if (popUp != null)
+            {
+                popUp.ShowPopUp("Shield Activated!");
+            }
         }
     }
     
