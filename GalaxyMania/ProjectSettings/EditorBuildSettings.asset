@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial Move.unity
     guid: 0d119dfac00904d4da0c885eabb86bf7
+  - enabled: 1
+    path: Assets/Scenes/Level Screen.unity
+    guid: 2f242bff9db7a4c2daf78064bcf8c09b
   m_configObjects: {}
