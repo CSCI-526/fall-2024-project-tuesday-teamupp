@@ -120,7 +120,7 @@ public class HUDController : MonoBehaviour
     public void CollectFreeze()
     {
         var freezeText = freezeUI.GetComponentInChildren<TextMeshProUGUI>();
-        freezeText.text = "Freeze";
+        freezeText.text = "Freeze (E)";
         StartCoroutine(FadeOpacity(freezeCanvasGroup, 1f));
 
         var freezeIcon = freezeUI.GetComponentInChildren<UnityEngine.UI.Image>();
@@ -215,7 +215,7 @@ public class HUDController : MonoBehaviour
             StartCoroutine(FadeOpacity(freezeCanvasGroup, 0.4f));  // Fade back to 40% opacity
 
             var freezeText = freezeUI.GetComponentInChildren<TextMeshProUGUI>();
-            freezeText.text = "Freeze";  // Change text back to "Freeze"
+            freezeText.text = "Freeze (E)";  // Change text back to "Freeze"
 
             var freezeIcon = freezeUI.GetComponentInChildren<UnityEngine.UI.Image>();
             if (freezeIcon != null)
