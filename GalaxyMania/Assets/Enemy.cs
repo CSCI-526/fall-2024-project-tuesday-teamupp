@@ -32,7 +32,11 @@ public class Enemy : MonoBehaviour
         if (player != null)
         {
             Vector2 direction = (player.position - transform.position).normalized;
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+            float spawnOffset = 3.1f;
+            Vector2 spawnPosition = (Vector2)transform.position + direction * spawnOffset;
+
+            GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
             bullet.transform.SetParent(transform.parent);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = direction * bulletSpeed;

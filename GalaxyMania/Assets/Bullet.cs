@@ -23,7 +23,6 @@ public class Bullet : MonoBehaviour
             Collider2D levelCollider = level.GetComponent<Collider2D>();
             if (levelCollider != null)
             {
-                Debug.Log("Here also");
 
                 Bounds bounds = levelCollider.bounds;
                 levelBoundaryMin = new Vector2(bounds.min.x, bounds.min.y); // Minimum boundary
