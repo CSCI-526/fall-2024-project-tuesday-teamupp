@@ -7279,6 +7279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7917f4c915ac4404583bcd30ad39ec45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skyboxMaterial: {fileID: 2100000, guid: 0a98eaa61401f3c49a068e4fbd6c2e2a, type: 2}
   rotationSpeed: 30
   levelParent: {fileID: 936565159}
   antiRotatPlatforms: {fileID: 805215245}
