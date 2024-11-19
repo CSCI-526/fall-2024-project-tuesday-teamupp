@@ -10,6 +10,7 @@ public class PauseButton : MonoBehaviour
     void Start()
     {
         pauseMenuPanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void TogglePauseMenu()
@@ -30,6 +31,11 @@ public class PauseButton : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Level Screen");
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("Start Screen");
     }
 
     public void TutorialScene()
