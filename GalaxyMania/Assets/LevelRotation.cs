@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class LevelRotation : MonoBehaviour
 {
+    public Material skyboxMaterial; // Assign your skybox material here
+    private float skyboxRotation = 0f; // Tracks the skybox rotation
     public float rotationSpeed = 30f;
     public Transform levelParent;
     public Transform antiRotatPlatforms;
@@ -74,8 +76,8 @@ public class LevelRotation : MonoBehaviour
 
             // Apply rotation to the level parent
             levelParent.rotation = Quaternion.Euler(0f, 0f, currentRotation);
-
             // Apply the opposite rotation to the AntiRotatPlatforms
+            RotateSkybox(horizontalInput);
             foreach (Transform platform in antiRotatPlatforms)
             {
                 platform.Rotate(Vector3.forward * rotationSpeed * horizontalInput * Time.deltaTime);
@@ -86,6 +88,17 @@ public class LevelRotation : MonoBehaviour
          MoveVPlatforms();
     }
 
+    private void RotateSkybox(float horizontalInput)
+    {
+        if (skyboxMaterial != null)
+        {
+            // **Adjust the skybox rotation based on player input**
+            skyboxRotation += horizontalInput * rotationSpeed * Time.deltaTime;
+
+            // **Update the _Rotation property in the skybox material**
+            skyboxMaterial.SetFloat("_Rotation", skyboxRotation);
+        }
+    }
     void Update()
     {
         if (!isZooming && !rotationPaused)

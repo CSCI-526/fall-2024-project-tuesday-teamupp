@@ -5,13 +5,12 @@ public class StartScreenManager : MonoBehaviour
 {
     public void StartGame()
     {
-        // Load the game scene (replace "GameScene" with your actual scene name)
         SceneManager.LoadScene("Level Screen");
     }
 
     public void Tutorial()
     {
-        SceneManager.LoadScene("Tutorial Move");
+        SceneManager.LoadScene("Tutorial Screen");
     }
 
     // public void QuitGame()
