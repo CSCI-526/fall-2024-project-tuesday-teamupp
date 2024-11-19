@@ -32,6 +32,11 @@ public class PauseButton : MonoBehaviour
         SceneManager.LoadScene("Level Screen");
     }
 
+    public void Exit()
+    {
+        SceneManager.LoadScene("Start Screen");
+    }
+
     public void TutorialScene()
     {
         try
