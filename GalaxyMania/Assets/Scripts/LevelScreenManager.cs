@@ -30,6 +30,10 @@ public class LevelTutorialScreenManager : MonoBehaviour
     {
         SceneManager.LoadScene("Tutorial Jump");
     }
+    public void TutorialBouncy()
+    {
+        SceneManager.LoadScene("Tutorial Bouncy");
+    }
     public void TutorialPortal()
     {
         SceneManager.LoadScene("Tutorial Portal");

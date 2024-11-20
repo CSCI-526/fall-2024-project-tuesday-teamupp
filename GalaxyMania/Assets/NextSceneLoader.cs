@@ -36,7 +36,7 @@ public class NextSceneLoader : MonoBehaviour
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(0.75f);
         Time.timeScale = 1;
-        if (currentSceneName == "Tutorial Move")  // Check if the current scene is Level 1
+        if (currentSceneName == "Tutorial Move")
         {
             distTracker.sendlevel1();
             // Load the next level
@@ -44,7 +44,15 @@ public class NextSceneLoader : MonoBehaviour
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Tutorial Jump");
         }
-        else if (currentSceneName == "Tutorial Jump")  // Check if the current scene is Level 1
+        else if (currentSceneName == "Tutorial Jump")
+        {
+            distTracker.sendlevel1();
+            // Load the next level
+            LevelRotation.rotationPaused = false;
+            PlayerDiamondCollision.ResetDiamondState();
+            SceneManager.LoadScene("Tutorial Bouncy");
+        }
+        else if (currentSceneName == "Tutorial Bouncy")
         {
             distTracker.sendlevel1();
             // Load the next level
@@ -52,7 +60,7 @@ public class NextSceneLoader : MonoBehaviour
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Tutorial Portal");
         }
-        else if (currentSceneName == "Tutorial Portal")  // Check if the current scene is Level 1
+        else if (currentSceneName == "Tutorial Portal")
         {
             distTracker.sendlevel1();
             // Load the next level
@@ -60,7 +68,7 @@ public class NextSceneLoader : MonoBehaviour
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Tutorial Enemy");
         }
-        else if (currentSceneName == "Tutorial Enemy")  // Check if the current scene is Level 1
+        else if (currentSceneName == "Tutorial Enemy")
         {
             distTracker.sendlevel1();
             // Load the next level
