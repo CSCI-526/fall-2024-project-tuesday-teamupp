@@ -2460,18 +2460,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarsCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 4600268389019615127, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
-      propertyPath: m_fontSize
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600268389019615127, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600268389019615127, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
     - target: {fileID: 6237123846043534972, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2502,18 +2490,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6237123846043534972, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6237123846043534972, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6237123846043534972, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6237123846043534972, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
-      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6237123846043534972, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
@@ -2563,14 +2539,6 @@ PrefabInstance:
     - target: {fileID: 6237123846043534972, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8506620745414541629, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -308
-      objectReference: {fileID: 0}
-    - target: {fileID: 8506620745414541629, guid: b169e7cb18bf54e309bb2217b792a327, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 155
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
