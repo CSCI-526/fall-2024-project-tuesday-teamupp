@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class StarsCounter : MonoBehaviour
 {
-    //public Text starsText; // Reference to the UI Text component
+    public TextMeshProUGUI starsText; // Reference to the UI Text component
     public GameObject[] portals; // Array to hold multiple portal GameObjects
     private int starsCount = 0; // Track the number of stars collected
     private int totalStars; // Total number of stars in the scene
@@ -15,7 +17,7 @@ public class StarsCounter : MonoBehaviour
         totalStars = GameObject.FindGameObjectsWithTag("Star").Length;
 
         // Update the text initially
-        //starsText.text = "Stars: 0 / " + totalStars;
+        starsText.text = "Stars: 0 / " + totalStars;
 
         // Ensure all portals are initially inactive
         foreach (GameObject portal in portals)
@@ -29,7 +31,7 @@ public class StarsCounter : MonoBehaviour
     public void AddStar()
     {
         starsCount++;
-        //starsText.text = "Stars: " + starsCount + " / " + totalStars;
+        starsText.text = "Stars: " + starsCount + " / " + totalStars;
 
         // Check if all stars are collected
         if (starsCount >= totalStars)
@@ -48,7 +50,7 @@ public class StarsCounter : MonoBehaviour
                         popUp.ShowPopUp("Collect all stars \"to find hidden portals!\"");
                     }
                 }
-                else if(currentLevelName.Contains("Level"))
+                else if (currentLevelName.Contains("Level"))
                 {
                     PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
                     if (popUp != null)
