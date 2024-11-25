@@ -1120,6 +1120,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!212 &435211363 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2692774369151049880, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
+  m_PrefabInstance: {fileID: 8231139449493402571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &463767708
 GameObject:
   m_ObjectHideFlags: 0
@@ -3637,6 +3642,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 942549084}
     - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
+      propertyPath: arrows.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
+      propertyPath: portals.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
+      propertyPath: arrows.Array.data[0]
+      value: 
+      objectReference: {fileID: 1772533812}
+    - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
+      propertyPath: arrows.Array.data[1]
+      value: 
+      objectReference: {fileID: 1237699572}
+    - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
       propertyPath: portals.Array.data[0]
       value: 
       objectReference: {fileID: 1522217766}
@@ -3647,11 +3668,27 @@ PrefabInstance:
     - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
       propertyPath: portals.Array.data[2]
       value: 
-      objectReference: {fileID: 1772533812}
+      objectReference: {fileID: 1237699572}
     - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
       propertyPath: portals.Array.data[3]
       value: 
-      objectReference: {fileID: 1237699572}
+      objectReference: {fileID: 1772533812}
+    - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
+      propertyPath: starImages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
+      propertyPath: starImages.Array.data[0]
+      value: 
+      objectReference: {fileID: 435211363}
+    - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
+      propertyPath: starImages.Array.data[1]
+      value: 
+      objectReference: {fileID: 2025307394}
+    - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
+      propertyPath: starImages.Array.data[2]
+      value: 
+      objectReference: {fileID: 2037570261}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5103,11 +5140,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 235337212069751383, guid: 2581a23e6381545499abc4b715ce3b57, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5822468
+      value: 8.56
       objectReference: {fileID: 0}
     - target: {fileID: 235337212069751383, guid: 2581a23e6381545499abc4b715ce3b57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.598881
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 235337212069751383, guid: 2581a23e6381545499abc4b715ce3b57, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5784,7 +5821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5442440455001000774, guid: f82db84fdd23b43108ab91a4a8950c5d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.49
+      value: 17.41
       objectReference: {fileID: 0}
     - target: {fileID: 5442440455001000774, guid: f82db84fdd23b43108ab91a4a8950c5d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6811,6 +6848,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!212 &2025307394 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1415505902308668060, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
+  m_PrefabInstance: {fileID: 8231139449493402571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2037570261 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 834891446501654754, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
+  m_PrefabInstance: {fileID: 8231139449493402571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2126998711
 GameObject:
   m_ObjectHideFlags: 0
@@ -7123,6 +7170,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 936565159}
     m_Modifications:
+    - target: {fileID: 423631051723121666, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097587492834981205, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778112063428770895, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
+      propertyPath: m_Color.b
+      value: 0.16420433
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778112063428770895, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7413887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778112063428770895, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956904044574448453, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5182285224574330064, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
       propertyPath: targetExit
       value: 
@@ -7133,7 +7204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5910900260675092888, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.48
+      value: 17.63
       objectReference: {fileID: 0}
     - target: {fileID: 5910900260675092888, guid: 07d654f215c6a4bbf9b246064ad9c592, type: 3}
       propertyPath: m_LocalPosition.z
