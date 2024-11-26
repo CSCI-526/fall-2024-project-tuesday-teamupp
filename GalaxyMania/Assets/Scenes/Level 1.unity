@@ -3680,11 +3680,11 @@ PrefabInstance:
     - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
       propertyPath: starImages.Array.data[0]
       value: 
-      objectReference: {fileID: 435211363}
+      objectReference: {fileID: 2025307394}
     - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
       propertyPath: starImages.Array.data[1]
       value: 
-      objectReference: {fileID: 2025307394}
+      objectReference: {fileID: 435211363}
     - target: {fileID: 7565715861448560356, guid: 0032efca6ed6149d9bb2fa87040445c7, type: 3}
       propertyPath: starImages.Array.data[2]
       value: 
