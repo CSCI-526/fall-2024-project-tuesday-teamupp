@@ -237,9 +237,10 @@ public class PlayerController : MonoBehaviour
     {
         return isGameOver;  // Return whether the game is over
     }
+
     void CheckIfGrounded()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 2f, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 1f, groundLayer);
         //Debug.Log("The ground check position is" +groundCheck.position + "and isGrounded is " + isGrounded);
     }
 
