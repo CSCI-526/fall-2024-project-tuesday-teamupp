@@ -52,4 +52,10 @@ public class PauseButton : MonoBehaviour
         }
         
     }
+
+    public void RestartLevel()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

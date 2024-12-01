@@ -47,7 +47,6 @@ public class LevelRotation : MonoBehaviour
         mapZoom = fullLevelHeight * 0.6f; // Set map view zoom level
         mainCamera.orthographicSize = fullLevelHeight * 0.6f; // Start zoomed out (adjusted multiplier)
 
-
         // Saving local positions at start, to allow Hmove & Vmove
         if (hMovingPlatforms != null)
         {
@@ -59,10 +58,8 @@ public class LevelRotation : MonoBehaviour
             vStartPosition = vMovingPlatforms.localPosition;
         }
 
-
         // Start the coroutine to smoothly zoom in on the player
         StartCoroutine(SmoothZoomIn());
-
 
     }
 
@@ -170,7 +167,13 @@ public class LevelRotation : MonoBehaviour
 
     void ToggleZoom()
     {
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
         if (isToggleZooming) return; // Prevent multiple toggles at once
+        if  (currentSceneName == "Level 4") 
+        {
+            mapZoom = fullLevelHeight * 0.2f;
+        }
         float targetZoom = isZoomedOutView ? playerZoom : mapZoom;
 
         // Start the zoom toggle coroutine

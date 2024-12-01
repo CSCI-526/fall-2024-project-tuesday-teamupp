@@ -27,15 +27,42 @@ public class Shield : MonoBehaviour
 
         if (other.CompareTag("Player") && !playerController.IsShieldActive())  // Activate only if the shield isn't already active
         {
+            StartCoroutine(HideAndShow());
             playerController.SetShieldActive(true);
-            //shieldPicked = true; 
-            //send2Google.SendShield(shieldPicked);
-            Destroy(gameObject);  // Destroy the shield power-up after collection
             if (popUp != null)
             {
                 popUp.ShowPopUp("Shield Activated!");
             }
         }
     }
-    
+
+    IEnumerator HideAndShow()
+    {
+        ToggleShield(false);
+
+        // Wait for 15 seconds
+        yield return new WaitForSeconds(15);
+
+        ToggleShield(true);
+    }
+
+    void ToggleShield(bool isVisible)
+    {
+        // Handle visibility (Renderer)
+        Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.enabled = isVisible;
+        }
+
+        // Handle collision (Collider2D)
+        Collider2D[] colliders = gameObject.GetComponentsInChildren<Collider2D>();
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = isVisible;
+        }
+    }
+
+
+
 }

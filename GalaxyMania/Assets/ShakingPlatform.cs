@@ -7,10 +7,15 @@ public class ShakingPlatform : MonoBehaviour
     public float vibrateDuration = 2f; // Duration of the vibration (2 seconds)
     public float vibrateMagnitude = 0.24f; // Intensity of the vibration
     public float disappearDuration = 2f; // Duration the platform remains invisible (5 seconds)
+    private Renderer platformRenderer;
+    private Collider2D platformCollider;
 
     private void Start()
     {
         originalPosition = transform.position; // Store the platform's original position
+        Debug.Log(originalPosition.ToString());
+        platformRenderer = GetComponent<Renderer>(); // Get the Renderer component
+        platformCollider = GetComponent<Collider2D>(); // Get the Collider2D component
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -28,14 +33,18 @@ public class ShakingPlatform : MonoBehaviour
         yield return StartCoroutine(Vibrate(vibrateDuration));
 
         // Make the platform invisible and disable its collider
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        if (platformRenderer != null) platformRenderer.enabled = false;
+        if (platformCollider != null) platformCollider.enabled = false;
 
         // Wait for disappearDuration seconds
         yield return new WaitForSeconds(disappearDuration);
 
         // Make the platform visible again
-        gameObject.SetActive(true);
-        transform.position = originalPosition; // Reset to original position
+        //gameObject.SetActive(true);
+        if (platformRenderer != null) platformRenderer.enabled = true;
+        if (platformCollider != null) platformCollider.enabled = true;
+        //transform.position = originalPosition; // Reset to original position
     }
 
     private IEnumerator Vibrate(float duration)
@@ -59,7 +68,8 @@ public class ShakingPlatform : MonoBehaviour
         }
 
         // Reset the position to original after vibration ends
-        transform.localPosition = originalPosition;
+        //transform.localPosition = originalPosition;
+
     }
 
 }

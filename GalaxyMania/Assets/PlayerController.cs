@@ -320,6 +320,24 @@ public class PlayerController : MonoBehaviour
         return shieldActive;
     }
 
+    public IEnumerator RespawnPowerup(GameObject powerup, Transform parentPowerup, Vector3 powerupPosition)
+    {
+        // Hide the powerup by disabling the entire GameObject
+        powerup.SetActive(false);
+
+        // Wait for 15 seconds
+        yield return new WaitForSeconds(15);
+
+        // Respawn the powerup at its initial local position relative to its parent
+        if (parentPowerup != null)
+        {
+            powerup.transform.SetParent(parentPowerup); // Ensure it's still a child of the same parent
+            powerup.transform.localPosition = powerupPosition; // Reset to the saved local position
+        }
+
+        powerup.SetActive(true); // Make the powerup visible again
+    }
+
     void OnApplicationQuit()
     {
         //if (send2Google != null)

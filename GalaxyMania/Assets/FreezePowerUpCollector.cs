@@ -11,9 +11,11 @@ public class PlayerDiamondCollision : MonoBehaviour
     public static bool fcounter = false;
     Send2Google send2Google;
     Shield shield;
+    private PlayerController playerController;
 
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         GameObject senderObject = GameObject.Find("Person");
         shield = FindObjectOfType<Shield>();
         // Get the Send2Google component from the GameObject
@@ -87,7 +89,11 @@ public class PlayerDiamondCollision : MonoBehaviour
         if (collision.collider.CompareTag("Diamond"))
         {
             Debug.Log("Diamond collected!");
-            Destroy(collision.gameObject); // Remove the diamond from the scene
+            GameObject diamond = collision.collider.gameObject;
+
+            Debug.Log("Respawn Coroutine started!");
+            StartCoroutine(playerController.RespawnPowerup(diamond, diamond.transform.parent, diamond.transform.localPosition));
+            //Destroy(collision.gameObject); // Remove the diamond from the scene
             hasDiamond = true; // Player has now collected the diamond
             counter = true;
             //if (currentLevelName == "Level 2")
