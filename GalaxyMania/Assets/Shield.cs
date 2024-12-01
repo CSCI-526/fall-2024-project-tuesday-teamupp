@@ -27,8 +27,6 @@ public class Shield : MonoBehaviour
 
         if (other.CompareTag("Player") && !playerController.IsShieldActive())  // Activate only if the shield isn't already active
         {
-            Debug.Log("here" + gameObject + gameObject.transform.parent + gameObject.transform.localPosition);
-            //StartCoroutine(playerController.RespawnPowerup(gameObject, gameObject.transform.parent, gameObject.transform.localPosition));
             StartCoroutine(HideAndShow());
             playerController.SetShieldActive(true);
             if (popUp != null)
