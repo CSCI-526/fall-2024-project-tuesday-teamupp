@@ -11,11 +11,11 @@ public class PlayerDiamondCollision : MonoBehaviour
     public static bool fcounter = false;
     Send2Google send2Google;
     Shield shield;
-    private Vector3 diamondLocalPosition; // Local position of the diamond relative to its parent
-    private Transform diamondParent; 
+    private PlayerController playerController;
 
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         GameObject senderObject = GameObject.Find("Person");
         shield = FindObjectOfType<Shield>();
         // Get the Send2Google component from the GameObject
@@ -91,11 +91,8 @@ public class PlayerDiamondCollision : MonoBehaviour
             Debug.Log("Diamond collected!");
             GameObject diamond = collision.collider.gameObject;
 
-            diamondLocalPosition = diamond.transform.localPosition;
-            diamondParent = diamond.transform.parent;
-
             Debug.Log("Respawn Coroutine started!");
-            StartCoroutine(RespawnDiamond(diamond));
+            StartCoroutine(playerController.RespawnPowerup(diamond, diamond.transform.parent, diamond.transform.localPosition));
             //Destroy(collision.gameObject); // Remove the diamond from the scene
             hasDiamond = true; // Player has now collected the diamond
             counter = true;
@@ -127,25 +124,5 @@ public class PlayerDiamondCollision : MonoBehaviour
     public static void ResetDiamondState()
     {
         PlayerDiamondCollision.hasDiamond = false; // Reset the diamond collection state
-    }
-
-    private Vector3 localRespawnPosition = new Vector3(5.79f, -0.58f, 0f);
-    private IEnumerator RespawnDiamond(GameObject diamond)
-    {
-        // Hide the diamond by disabling the entire GameObject
-        diamond.SetActive(false);
-
-        // Wait for 15 seconds
-        yield return new WaitForSeconds(15);
-
-        // Respawn the diamond at its initial local position relative to its parent
-        if (diamondParent != null)
-        {
-            diamond.transform.SetParent(diamondParent); // Ensure it's still a child of the same parent
-            diamond.transform.localPosition = diamondLocalPosition; // Reset to the saved local position
-        }
-
-        diamond.SetActive(true); // Make the diamond visible again
-        Debug.Log("Diamond has respawned!");
     }
 }
