@@ -241,7 +241,7 @@ public class PlayerController : MonoBehaviour
     void CheckIfGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 1.5f, groundLayer);
-        //Debug.Log("The ground check position is" +groundCheck.position + "and isGrounded is " + isGrounded);
+        //Debug.Log("The ground check position is" +groundCheck.position + "and isGrounded is " + isGrounded); 
     }
 
     void ApplyCustomGravity()
