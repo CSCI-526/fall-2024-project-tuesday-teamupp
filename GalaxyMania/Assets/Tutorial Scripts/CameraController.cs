@@ -13,16 +13,10 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         fullLevelHeight = CalculateLevelBounds().size.y;
-        //mainCamera.orthographicSize = fullLevelHeight * 0.6f; // Start zoomed out
-        //StartCoroutine(SmoothZoomIn());
     }
 
     void Update()
     {
-        //if (!isZooming)
-        //{
-        //    AdjustCamera();
-        //}
         AdjustCamera();
     }
 

@@ -6,33 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class HUDController : MonoBehaviour
 {
-    public GameObject freezeUI;  // UI group for the freeze power-up (contains both image and text)
-    public GameObject shieldUI;  // UI group for the shield power-up (contains both image and text)
-    public TextMeshProUGUI angleText;  // UI text element for the current angle display
+    public GameObject freezeUI;  
+    public GameObject shieldUI;  
+    public TextMeshProUGUI angleText;  
 
-    private Transform levelParent;  // The parent object of the level that is rotating
-    private Transform referencePoint;  // Reference point for angle calculation
+    private Transform levelParent; 
+    private Transform referencePoint; 
 
-    private float shieldTimer = 10f;  // Shield countdown timer
+    private float shieldTimer = 10f; 
     private bool shieldActive = false;
 
-    private float initialRotationZ;  // Track the initial rotation of the level
-    private string currentSceneName;  // Track the active scene
-    private bool hasAssignedReferences = false;  // To track if we've assigned references
+    private float initialRotationZ; 
+    private string currentSceneName;  
+    private bool hasAssignedReferences = false;  
 
-    private float freezeTimer = 10f;  // Timer for Freeze power-up countdown
-    private bool freezeActive = false;  // Flag to check if Freeze is active
+    private float freezeTimer = 10f;  
+    private bool freezeActive = false;  
 
-    private CanvasGroup freezeCanvasGroup;  // To manage opacity for FreezeUI
-    private CanvasGroup shieldCanvasGroup;  // To manage opacity for ShieldUI
+    private CanvasGroup freezeCanvasGroup;  
+    private CanvasGroup shieldCanvasGroup;  
 
     void Start()
     {
-        // Get the CanvasGroup components for managing opacity
         freezeCanvasGroup = freezeUI.GetComponent<CanvasGroup>();
         shieldCanvasGroup = shieldUI.GetComponent<CanvasGroup>();
 
-        // Graying out icons and setting opacity to 10% at startup
         SetInactiveAppearance(freezeCanvasGroup, freezeUI);
         SetInactiveAppearance(shieldCanvasGroup, shieldUI);
 
@@ -56,13 +54,12 @@ public class HUDController : MonoBehaviour
             UpdateShieldStatus();
         }
 
-        if (freezeActive)  // Check if Freeze is active and update the countdown
+        if (freezeActive)  
         {
-            UpdateFreezeStatus();  // Call UpdateFreezeStatus to show the countdown
+            UpdateFreezeStatus();  
         }
     }
 
-    // Assign levelParent and referencePoint based on the current scene
     void AssignReferences()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
@@ -79,7 +76,6 @@ public class HUDController : MonoBehaviour
 
         initialRotationZ = levelParent.rotation.eulerAngles.z;
 
-        // Initialize HUD elements (opacity starts at 40%)
         SetOpacity(freezeCanvasGroup, 0.4f);
         SetOpacity(shieldCanvasGroup, 0.4f);
 
@@ -87,27 +83,25 @@ public class HUDController : MonoBehaviour
         Debug.Log("HUD references successfully assigned for " + currentSceneName);
     }
 
-    // Update the current angle display
     void UpdateCurrentAngle()
     {
         if (levelParent != null)
         {
             float currentRotationZ = levelParent.rotation.eulerAngles.z;
             if (currentRotationZ > 180f) currentRotationZ -= 360f;
-            angleText.text = "Angle: " + Mathf.RoundToInt(currentRotationZ) + "\u00B0"; // Append the degree symbol
+            angleText.text = "Angle: " + Mathf.RoundToInt(currentRotationZ) + "\u00B0"; 
         }
     }
 
-    // Update shield status and timer
     void UpdateShieldStatus()
     {
         shieldTimer -= Time.deltaTime;
         if (shieldTimer <= 0)
         {
             shieldActive = false;
-            StartCoroutine(FadeOpacity(shieldCanvasGroup, 0.4f));  // Fade back to 40% opacity
+            StartCoroutine(FadeOpacity(shieldCanvasGroup, 0.4f));  
             var shieldText = shieldUI.GetComponentInChildren<TextMeshProUGUI>();
-            shieldText.text = "Shield";  // Change text back to "Shield"
+            shieldText.text = "Shield";  
         }
         else
         {
@@ -116,7 +110,6 @@ public class HUDController : MonoBehaviour
         }
     }
 
-    // Collect Freeze Power-Up
     public void CollectFreeze()
     {
         var freezeText = freezeUI.GetComponentInChildren<TextMeshProUGUI>();
@@ -126,7 +119,7 @@ public class HUDController : MonoBehaviour
         var freezeIcon = freezeUI.GetComponentInChildren<UnityEngine.UI.Image>();
         if (freezeIcon != null)
         {
-            freezeIcon.color = Color.green;  // Set Freeze icon to green upon collection
+            freezeIcon.color = Color.green;  
             Debug.Log("Freeze power-up collected: Icon color set to green.");
         }
         else
@@ -135,35 +128,29 @@ public class HUDController : MonoBehaviour
         }
     }
 
-    // Coroutine to handle the color change of AngleText for the duration of the Freeze power-up
     IEnumerator HandleFreezeEffect()
     {
-        // Change AngleText color to green
         angleText.color = Color.green;
 
-        // Wait for 10 seconds (effect duration)
         yield return new WaitForSeconds(10f);
 
-        // Revert AngleText color to white
         angleText.color = Color.white;
     }
 
-    // Use Freeze Power-Up (called from PlayerDiamondCollision)
     public void UseFreezePowerUp()
     {
-        freezeTimer = 10f;  // Reset the freeze timer
-        freezeActive = true;  // Mark Freeze as active
+        freezeTimer = 10f;  
+        freezeActive = true;  
 
         var iconImage = freezeUI.GetComponentInChildren<UnityEngine.UI.Image>();
         if (iconImage != null)
         {
-            iconImage.color = Color.green;  // Set Freeze icon to green
+            iconImage.color = Color.green;  
         }
 
         StartCoroutine(HandleFreezeEffect());
     }
 
-    // Helper function to set initial opacity
     void SetOpacity(CanvasGroup canvasGroup, float opacity)
     {
         canvasGroup.alpha = opacity;
@@ -179,12 +166,11 @@ public class HUDController : MonoBehaviour
         }
     }
 
-    // Coroutine to fade opacity from current value to the target value
     IEnumerator FadeOpacity(CanvasGroup canvasGroup, float targetOpacity)
     {
         float startOpacity = canvasGroup.alpha;
         float elapsedTime = 0f;
-        float fadeDuration = 1f;  // Duration for fading the shield back
+        float fadeDuration = 1f;  
 
         while (elapsedTime < fadeDuration)
         {
@@ -196,26 +182,25 @@ public class HUDController : MonoBehaviour
         canvasGroup.alpha = targetOpacity;
     }
 
-    // Coroutine to fade opacity back to 40% after 10 seconds
+    
     IEnumerator FadeBackAfterTime(CanvasGroup canvasGroup, TextMeshProUGUI text, string defaultText, float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
 
-        text.text = defaultText;  // Reset text after timer
-        StartCoroutine(FadeOpacity(canvasGroup, 0.4f));  // Fade back to 40% opacity
+        text.text = defaultText;  
+        StartCoroutine(FadeOpacity(canvasGroup, 0.4f));  
     }
 
-    // Update freeze status and countdown timer
-    void UpdateFreezeStatus()  // Update Freeze countdown
+    void UpdateFreezeStatus()  
     {
         freezeTimer -= Time.deltaTime;
         if (freezeTimer <= 0)
         {
             freezeActive = false;
-            StartCoroutine(FadeOpacity(freezeCanvasGroup, 0.4f));  // Fade back to 40% opacity
+            StartCoroutine(FadeOpacity(freezeCanvasGroup, 0.4f));  
 
             var freezeText = freezeUI.GetComponentInChildren<TextMeshProUGUI>();
-            freezeText.text = "Freeze (E)";  // Change text back to "Freeze"
+            freezeText.text = "Freeze (E)";  
 
             var freezeIcon = freezeUI.GetComponentInChildren<UnityEngine.UI.Image>();
             if (freezeIcon != null)
@@ -227,26 +212,24 @@ public class HUDController : MonoBehaviour
         else
         {
             var freezeText = freezeUI.GetComponentInChildren<TextMeshProUGUI>();
-            freezeText.text = "Freeze: " + Mathf.Ceil(freezeTimer).ToString() + "s";  // Display countdown
+            freezeText.text = "Freeze: " + Mathf.Ceil(freezeTimer).ToString() + "s";  
         }
     }
 
-    // Activate Shield Power-Up
     public void ActivateShield()
     {
         shieldActive = true;
         shieldTimer = 10f;
         var shieldText = shieldUI.GetComponentInChildren<TextMeshProUGUI>();
         shieldText.text = "Shield: " + shieldTimer + "s";
-        SetOpacity(shieldCanvasGroup, 1.0f);  // Set full opacity
+        SetOpacity(shieldCanvasGroup, 1.0f);  
 
         var iconImage = shieldUI.GetComponentInChildren<UnityEngine.UI.Image>();
         if (iconImage != null)
         {
-            iconImage.color = Color.blue;  // Set Shield icon to blue // CHANGE #3
+            iconImage.color = Color.blue;  
         }
 
-        // After 10 seconds, fade back to 40% opacity
         StartCoroutine(FadeBackAfterTime(shieldCanvasGroup, shieldText, "Shield", 10f));
     }
 }

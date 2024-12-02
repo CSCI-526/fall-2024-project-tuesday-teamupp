@@ -2,7 +2,7 @@
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject player; // Reference to the player object
+    public GameObject player; 
 
     private RotationHandler rotationHandler;
     private MovingPlatforms platformMover;
@@ -10,14 +10,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // Fetch the components from the player
         rotationHandler = player.GetComponent<RotationHandler>();
         platformMover = player.GetComponent<MovingPlatforms>();
         cameraController = player.GetComponent<CameraController>();
     }
 
-    void Update()
-    {
-        // Game-wide logic goes here, if needed
-    }
 }

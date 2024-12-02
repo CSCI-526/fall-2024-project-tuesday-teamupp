@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class PulseEffect : MonoBehaviour
 {
-    public float pulseSpeed = 0.5f; // Speed of pulsing
-    public float minScale = 0.8f; // Minimum scale factor
-    public float maxScale = 1.2f; // Maximum scale factor
-
+    public float pulseSpeed = 0.5f; 
+    public float minScale = 0.8f; 
+    public float maxScale = 1.2f; 
     private Vector3 initialScale;
     private bool isPulsing = true;
 
     void Start()
     {
-        initialScale = transform.localScale; // Save the object's original scale
+        initialScale = transform.localScale; 
     }
 
     void Update()
@@ -19,17 +18,16 @@ public class PulseEffect : MonoBehaviour
         if (isPulsing)
         {
             float scale = minScale + Mathf.PingPong(Time.time * pulseSpeed, maxScale - minScale);
-            transform.localScale = initialScale * scale; // Apply pulsing effect
+            transform.localScale = initialScale * scale; 
         }
     }
 
-    // You can call this method to start or stop pulsing
     public void TogglePulse(bool pulse)
     {
         isPulsing = pulse;
         if (!pulse)
         {
-            transform.localScale = initialScale; // Reset scale when pulsing stops
+            transform.localScale = initialScale; 
         }
     }
 }

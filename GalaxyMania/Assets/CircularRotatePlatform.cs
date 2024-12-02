@@ -12,10 +12,8 @@ public class CircularRotatePlatform : MonoBehaviour
 
     private void Start()
     {
-        // Store the center point as the platform's initial position
         centerPoint = transform.position;
 
-        // Immediately move to starting position at the bottom of the circle
         float x = centerPoint.x + Mathf.Cos(currentAngle) * radius;
         float y = centerPoint.y + Mathf.Sin(currentAngle) * radius;
         transform.position = new Vector3(x, y, centerPoint.z);
@@ -34,7 +32,6 @@ public class CircularRotatePlatform : MonoBehaviour
             return;
         }
 
-        // Only update the angle and position after the delay
         currentAngle += speed * Time.deltaTime;
         float x = centerPoint.x + Mathf.Cos(currentAngle) * radius;
         float y = centerPoint.y + Mathf.Sin(currentAngle) * radius;
@@ -45,7 +42,6 @@ public class CircularRotatePlatform : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        // Draw the circular path in the editor for visualization
         Gizmos.color = Color.yellow;
         Vector3 center = Application.isPlaying ? centerPoint : transform.position;
         const int segments = 32;

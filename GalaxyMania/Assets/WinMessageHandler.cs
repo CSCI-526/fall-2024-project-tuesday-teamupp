@@ -5,16 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class WinMessageHandler : MonoBehaviour
 {
-    public TextMeshProUGUI winText; // Reference to the UI Text element
-    public Color targetColor = new Color(111f / 255f, 41f / 255f, 26f / 255f, 1f); // Set target color
-    public float colorTolerance = 0.02f; // Tolerance for color matching
+    public TextMeshProUGUI winText; 
+    public Color targetColor = new Color(111f / 255f, 41f / 255f, 26f / 255f, 1f); 
+    public float colorTolerance = 0.02f; 
     private bool wonGame = false;
     Send2Google send2Google;
 
     private void Start()
     {
-        // Initially hide the win message
-        winText.text = "";
+\        winText.text = "";
         GameObject sendGoogleObject = GameObject.Find("Person");
         if (sendGoogleObject != null)
         {
@@ -26,8 +25,7 @@ public class WinMessageHandler : MonoBehaviour
     {
         if (Input.anyKeyDown && wonGame)
         {
-            // Reload the current active scene
-            Time.timeScale = 1f;  // Unfreeze the game
+            Time.timeScale = 1f;  
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             wonGame = false;
         }
@@ -35,20 +33,17 @@ public class WinMessageHandler : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Get the SpriteRenderer of the object we collided with
         SpriteRenderer objectRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
 
         if (objectRenderer != null)
         {
             Color objectColor = objectRenderer.color;
 
-            // Check if the object's color matches the target color
             if (IsColorClose(objectColor, targetColor, colorTolerance))
             {
                 send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 4", CountPlatform.levelPlatforms["Level 4"].Count);
-                // Display the win message
                 winText.text = "You Win!";
-                Time.timeScale = 0; // Optionally pause the game
+                Time.timeScale = 0; 
                 LevelRotation.rotationPaused = false;
                 PlayerDiamondCollision.ResetDiamondState();
                 wonGame = true;

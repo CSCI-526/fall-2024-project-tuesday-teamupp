@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PauseButton : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
-    // Start is called before the first frame update
     void Start()
     {
         pauseMenuPanel.SetActive(false);
@@ -18,7 +17,6 @@ public class PauseButton : MonoBehaviour
         bool isPaused = pauseMenuPanel.activeSelf;
         pauseMenuPanel.SetActive(!isPaused);
 
-        // Pause or resume the game
         Time.timeScale = isPaused ? 1 : 0;
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDiamondCollision : MonoBehaviour
 {
-    public static bool hasDiamond = false; // Tracks if the player has collected the diamond
+    public static bool hasDiamond = false; 
     public string freezePicked;
     public static bool counter = false;
     public static bool fcounter = false;
@@ -18,7 +18,6 @@ public class PlayerDiamondCollision : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         GameObject senderObject = GameObject.Find("Person");
         shield = FindObjectOfType<Shield>();
-        // Get the Send2Google component from the GameObject
         if (senderObject != null)
         {
             send2Google = senderObject.GetComponent<Send2Google>();
@@ -29,7 +28,6 @@ public class PlayerDiamondCollision : MonoBehaviour
 
     void Update()
     {
-        // Check if the player presses the "E" key and has collected the diamond
         string currentLevelName = GetCurrentLevelName();
         if (hasDiamond && Input.GetKeyDown(KeyCode.E))
         {
@@ -43,49 +41,32 @@ public class PlayerDiamondCollision : MonoBehaviour
             {
                 fcounter = true;
             }
-            // Call the coroutine to pause the rotation for 10 seconds
             StartCoroutine(FindObjectOfType<LevelRotation>().PauseRotationForSeconds(10f));
 
-            // Notify HUDController to update UI for Freeze power-up
-            HUDController hudController = FindObjectOfType<HUDController>(); // NEW BLOCK
+            HUDController hudController = FindObjectOfType<HUDController>(); 
             if (hudController != null)
             {
-                hudController.UseFreezePowerUp();  // Trigger Freeze UI update and angle color change
+                hudController.UseFreezePowerUp();  
             }
             else
             {
                 Debug.LogError("HUDController not found!");
             }
         }
-        //if (!hasDiamond)
-        //{
-        //    freezePicked = "No";
-        //    send2Google.SendFreeze(freezePicked);
-        //    Debug.Log("analytics executed3");
-         
-        //}
-        //else
-        //{
-        //    freezePicked = "Yes";
-        //    send2Google.SendFreeze(freezePicked);
-        //}
     }
 
     public string GetCurrentLevelName()
     {
         return SceneManager.GetActiveScene().name;
     }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         string currentLevelName = GetCurrentLevelName();
-
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if the object we collided with is the diamond
-        //string currentLevelName = GetCurrentLevelName();
         if (collision.collider.CompareTag("Diamond"))
         {
             Debug.Log("Diamond collected!");
@@ -93,17 +74,7 @@ public class PlayerDiamondCollision : MonoBehaviour
 
             Debug.Log("Respawn Coroutine started!");
             StartCoroutine(playerController.RespawnPowerup(diamond, diamond.transform.parent, diamond.transform.localPosition));
-            //Destroy(collision.gameObject); // Remove the diamond from the scene
-            hasDiamond = true; // Player has now collected the diamond
-            counter = true;
-            //if (currentLevelName == "Level 2")
-            //{
-            //    send2Google.SendFreeze("Yes");
-            //}
-            //else if (currentLevelName == "Level 4")
-            //{
-            //    fcounter = true;
-            //}
+            hasDiamond = true;
 
             PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
             if (popUp != null)
@@ -111,11 +82,10 @@ public class PlayerDiamondCollision : MonoBehaviour
                 popUp.ShowPopUp("Press E to freeze \"Level Rotation!\"");
             }
 
-            // Notify HUDController to show Freeze UI
-            HUDController hudController = FindObjectOfType<HUDController>(); // NEW LINE
+            HUDController hudController = FindObjectOfType<HUDController>(); 
             if (hudController != null)
             {
-                hudController.CollectFreeze();  // NEW LINE - Trigger Freeze UI collection update
+                hudController.CollectFreeze();  
             }
         }
 
@@ -123,6 +93,6 @@ public class PlayerDiamondCollision : MonoBehaviour
 
     public static void ResetDiamondState()
     {
-        PlayerDiamondCollision.hasDiamond = false; // Reset the diamond collection state
+        PlayerDiamondCollision.hasDiamond = false; 
     }
 }

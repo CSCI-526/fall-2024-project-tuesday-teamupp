@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class CountPlatform : MonoBehaviour
 {
     public static Dictionary<string, Dictionary<string, bool>> levelPlatforms = new Dictionary<string, Dictionary<string, bool>>();
-    // Start is called before the first frame update
     void Start()
     {
         levelPlatforms["Level 1"] = new Dictionary<string, bool>();
@@ -80,10 +79,5 @@ public class CountPlatform : MonoBehaviour
             levelPlatforms[currentSceneName][platformName] = true;
             Debug.Log(currentSceneName + " : Touch the " + platformName);
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

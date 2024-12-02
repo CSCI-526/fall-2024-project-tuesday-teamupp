@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;  // This is required to load scenes
+using UnityEngine.SceneManagement;  
 
 public class NextSceneLoader : MonoBehaviour
 {
@@ -10,7 +10,6 @@ public class NextSceneLoader : MonoBehaviour
     {
         GameObject senderObject = GameObject.Find("DistTracker");
         GameObject sendGoogleObject = GameObject.Find("Person");
-        // Get the Send2Google component from the GameObject
         if (senderObject != null)
         {
             distTracker = senderObject.GetComponent<DistTracker>();
@@ -20,13 +19,13 @@ public class NextSceneLoader : MonoBehaviour
             send2Google = sendGoogleObject.GetComponent<Send2Google>();
         }
     }
-    void OnTriggerEnter2D(Collider2D other)  // Use Collider2D for 2D trigger detection
+    void OnTriggerEnter2D(Collider2D other)  
     {
-        if (other.CompareTag("Player"))  // Ensure the player has the tag "Player"
+        if (other.CompareTag("Player"))  
         {
             Debug.Log("Player entered trigger zone.");
 
-            LoadNextScene();  // Call the function to load the next scene
+            LoadNextScene();  
         }
     }
 
@@ -38,58 +37,51 @@ public class NextSceneLoader : MonoBehaviour
         Time.timeScale = 1;
         if (currentSceneName == "Tutorial Move")
         {
-            distTracker.sendlevel1();
-            // Load the next level
+            distTracker.SendLevel1();
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Tutorial Jump");
         }
         else if (currentSceneName == "Tutorial Jump")
         {
-            distTracker.sendlevel1();
-            // Load the next level
+            distTracker.SendLevel1();
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Tutorial Bouncy");
         }
         else if (currentSceneName == "Tutorial Bouncy")
         {
-            distTracker.sendlevel1();
-            // Load the next level
+            distTracker.SendLevel1();
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Tutorial Portal");
         }
         else if (currentSceneName == "Tutorial Portal")
         {
-            distTracker.sendlevel1();
-            // Load the next level
+            distTracker.SendLevel1();
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Tutorial Enemy");
         }
         else if (currentSceneName == "Tutorial Enemy")
         {
-            distTracker.sendlevel1();
-            // Load the next level
+            distTracker.SendLevel1();
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Level 1");
         }
-        else if (currentSceneName == "Level 1")  // Check if the current scene is Level 1
+        else if (currentSceneName == "Level 1")  
         {
-            distTracker.sendlevel1();
+            distTracker.SendLevel1();
             send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 1", CountPlatform.levelPlatforms["Level 1"].Count);
-            // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             SceneManager.LoadScene("Level 2");
         }
-        else if (currentSceneName == "Level 2")  // Check if the current scene is Level 2
+        else if (currentSceneName == "Level 2")  
         {
-            distTracker.sendlevel1();
+            distTracker.SendLevel1();
             send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 2", CountPlatform.levelPlatforms["Level 2"].Count);
-            // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             if (PlayerDiamondCollision.counter == false)
@@ -98,11 +90,9 @@ public class NextSceneLoader : MonoBehaviour
             }
             SceneManager.LoadScene("Level 3");
         }
-        else if (currentSceneName == "Level 3")  // Check if the current scene is Level 3
+        else if (currentSceneName == "Level 3") 
         {
-            //distTracker.sendlevel1();
             send2Google.SendCompleteLevelData(send2Google.timer, send2Google.numOfJump, "Level 3", CountPlatform.levelPlatforms["Level 3"].Count);
-            // Load the next level
             LevelRotation.rotationPaused = false;
             PlayerDiamondCollision.ResetDiamondState();
             if (PlayerDiamondCollision.counter == false)
@@ -115,7 +105,7 @@ public class NextSceneLoader : MonoBehaviour
 
     void LoadNextScene()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;  // Get the current scene name
+        string currentSceneName = SceneManager.GetActiveScene().name;  
         PowerUpPopUp popUp = FindObjectOfType<PowerUpPopUp>();
         if (popUp != null)
         {

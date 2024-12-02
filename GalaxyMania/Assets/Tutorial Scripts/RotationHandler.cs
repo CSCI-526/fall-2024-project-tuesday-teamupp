@@ -24,12 +24,10 @@ public class RotationHandler : MonoBehaviour
         targetRotation += -horizontalInput * rotationSpeed * Time.deltaTime;
         currentRotation = Mathf.Lerp(currentRotation, targetRotation, Time.deltaTime * 5f);
 
-        // Apply rotation to the level parent
         levelParent.rotation = Quaternion.Euler(0f, 0f, currentRotation);
 
         if (antiRotatPlatforms)
         {
-            // Apply the opposite rotation to the AntiRotatPlatforms
             foreach (Transform platform in antiRotatPlatforms)
             {
                 platform.Rotate(Vector3.forward * rotationSpeed * horizontalInput * Time.deltaTime);

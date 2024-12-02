@@ -6,23 +6,21 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Send2Google : MonoBehaviour
 {
-    //private string URL = "https://docs.google.com/forms/u/1/d/e/1FAIpQLSfTin5vQazJ86KlDQDvbGMqzUP0SRNv2yty84a0xrzvYMbEMA/formResponse";
     private string selectedAnswer1;
     private string selectedAnswer2;
     private long sessionID;
     private string test_url = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfdYAsohFb9clbZX-PXhy8QWj1zRPOXxT3RQ_YdAkrOrDWgCA/formResponse";
     public float timer;
     public int numOfJump = 0;
-    //private string portalfinder;
-    // Start is called before the first frame update
+
     void Start()
     {
         timer = 0f;
         numOfJump = 0;
     }
+    
     private void Awake()
     {
-        // Assign sessionID to identify playtests
         sessionID = DateTime.Now.Ticks;
     }
 
@@ -69,7 +67,7 @@ public class Send2Google : MonoBehaviour
         WWWForm form = new WWWForm();
 
         Debug.Log($"Sending data - SessionID: {sessionID}, Collected shield in Level 3: {shield}");
-        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.751077088", sessionID);  
         if (shield)
         {
             form.AddField("entry.554968727", "Yes");
@@ -98,7 +96,7 @@ public class Send2Google : MonoBehaviour
         WWWForm form = new WWWForm();
 
         Debug.Log($"Sending data - SessionID: {sessionID}, Collected freeze in Level 2: {freeze}");
-        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.751077088", sessionID);  
         form.AddField("entry.209725520", freeze);
         
         using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
@@ -121,7 +119,7 @@ public class Send2Google : MonoBehaviour
         WWWForm form = new WWWForm();
 
         Debug.Log($"Sending data - SessionID: {sessionID}, Power-Ups collected in Level 4: {power}");
-        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.751077088", sessionID);  
         form.AddField("entry.1660044848", power);
         
         using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
@@ -144,7 +142,7 @@ public class Send2Google : MonoBehaviour
         WWWForm form = new WWWForm();
 
         Debug.Log($"Sending data - SessionID: {sessionID}, time: {timer}, #OfJump: {numOfJump}, levelname: {levelname}, #ofPlatform: {NumOfPlatform}");
-        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.751077088", sessionID);  
         form.AddField("entry.343903498", timer);
         form.AddField("entry.1120816225", numOfJump);
         form.AddField("entry.1916354037", levelname);
@@ -169,8 +167,7 @@ public class Send2Google : MonoBehaviour
     {
         WWWForm form = new WWWForm();
 
-        //Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer1}");
-        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.751077088", sessionID);  
         if (isHitByBullet)
         {
             if (level == "Level 3")
@@ -215,7 +212,7 @@ public class Send2Google : MonoBehaviour
         WWWForm form = new WWWForm();
 
         Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer1}");
-        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.751077088", sessionID);  
         form.AddField("entry.1165852626", selectedAnswer1);
 
         using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
@@ -238,7 +235,7 @@ public class Send2Google : MonoBehaviour
         WWWForm form = new WWWForm();
 
         Debug.Log($"Sending data - SessionID: {sessionID}, Answer: {selectedAnswer2}");
-        form.AddField("entry.751077088", sessionID);  // For session ID
+        form.AddField("entry.751077088", sessionID);  
         form.AddField("entry.1285688663", selectedAnswer2);
 
         using (UnityWebRequest www = UnityWebRequest.Post(test_url, form))
@@ -256,8 +253,6 @@ public class Send2Google : MonoBehaviour
         }
     }
     
-    
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;

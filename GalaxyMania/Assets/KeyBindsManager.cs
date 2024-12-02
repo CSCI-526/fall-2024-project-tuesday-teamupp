@@ -5,7 +5,6 @@ using UnityEngine;
 public class KeyBindsManager : MonoBehaviour
 {
     public GameObject keyBindsPanel;
-    // Start is called before the first frame update
     void Start()
     {
         keyBindsPanel.SetActive(false);
